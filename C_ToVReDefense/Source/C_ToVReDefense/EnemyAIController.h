@@ -15,20 +15,4 @@ class C_TOVREDEFENSE_API AEnemyAIController : public AAIController
 	GENERATED_BODY()
 
 	
-public:
-	AEnemyAIController();
-	virtual void BeginPlay() override;
-	void CheckForOtherTanks();
-
-	
-protected:
-	UPROPERTY(EditDefaultsOnly)
-	class UBehaviorTreeComponent* BehaviorTreeComponent;
-
-	virtual void OnPossess(APawn* InPawn) override;
-
-private:
-	FTimerHandle CheckTanksTimerHandle;
-	float MaxDistance = 50;
-	class AEnemyPawn* EnemyPawn;
 };

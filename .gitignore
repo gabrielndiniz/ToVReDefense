@@ -51,6 +51,7 @@ C_ToVReDefense/SourceArt/**/*.tga
 # Binary Files
 C_ToVReDefense/Binaries/*
 C_ToVReDefense/Plugins/*/Binaries/*
+C_ToVReDefense/Plugins/*
 
 # Builds
 C_ToVReDefense/Build/*
