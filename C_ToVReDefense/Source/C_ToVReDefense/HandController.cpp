@@ -28,6 +28,10 @@ void AHandController::SetHand(EControllerHand ControllerHand, FTransform HandTra
 		{
 			HandMeshComponent->SetSkeletalMesh(RightHandMesh);
 			HandMeshComponent->SetRelativeTransform(HandTransform);
+			if (HandMeshComponent->GetNumMaterials() > 0 && RightHandMaterial != nullptr)
+			{
+				HandMeshComponent->SetMaterial(0, RightHandMaterial);
+			}
 		}
 		ThisHand = HandToUse::RightHand;
 	}
@@ -37,6 +41,10 @@ void AHandController::SetHand(EControllerHand ControllerHand, FTransform HandTra
 		{
 			HandMeshComponent->SetSkeletalMesh(LeftHandMesh);
 			HandMeshComponent->SetRelativeTransform(HandTransform);
+			if (HandMeshComponent->GetNumMaterials() > 0 && LeftHandMaterial != nullptr)
+			{
+				HandMeshComponent->SetMaterial(0, LeftHandMaterial);
+			}
 		}
 		else
 		{
@@ -51,32 +59,28 @@ void AHandController::SetHand(EControllerHand ControllerHand, FTransform HandTra
 
 	MotionController->SetTrackingSource(ControllerHand);
 	MotionController->bDisplayDeviceModel = false;
+	OnSetHandEvent.Broadcast();
 }
 
 void AHandController::HandFaceButton1Pressed()
 {
-    UE_LOG(LogTemp, Display, TEXT("HandFaceButton1Pressed"));
 }
 
 void AHandController::HandFaceButton2Pressed()
 {
-    UE_LOG(LogTemp, Display, TEXT("HandFaceButton2Pressed"));
 }
 
 void AHandController::HandMenuButtonPressed()
 {
-    UE_LOG(LogTemp, Display, TEXT("HandMenuButtonPressed"));
 }
 
 void AHandController::HandTriggerPressed()
 {
-    UE_LOG(LogTemp, Display, TEXT("HandTriggerPressed"));
 	bPointAnim = true;
 }
 
 void AHandController::HandGripPressed()
 {
-    UE_LOG(LogTemp, Display, TEXT("HandGripPressed"));
 	bGripAnim = true;
 
 	OnHandGripEvent.Broadcast();
@@ -84,42 +88,36 @@ void AHandController::HandGripPressed()
 
 void AHandController::HandFaceButton1Released()
 {
-    UE_LOG(LogTemp, Display, TEXT("HandFaceButton1Released"));
 }
 
 void AHandController::HandFaceButton2Released()
 {
-    UE_LOG(LogTemp, Display, TEXT("HandFaceButton2Released"));
 }
 
 void AHandController::HandMenuButtonReleased()
 {
-    UE_LOG(LogTemp, Display, TEXT("HandMenuButtonReleased"));
 }
 
 void AHandController::HandTriggerReleased()
 {
-    UE_LOG(LogTemp, Display, TEXT("HandTriggerReleased"));
 	bPointAnim = false;
 }
 
 void AHandController::HandGripReleased()
 {
-    UE_LOG(LogTemp, Display, TEXT("HandGripReleased"));
 	bGripAnim = false;
+	bThumbsPointAnim = false;
 
 	OnHandGripEvent.Broadcast();
 }
 
 void AHandController::ThumbAnimPressed()
 {
-	UE_LOG(LogTemp, Display, TEXT("ThumbAnimPressed"));
 	bThumbsAnim = true;
 }
 
 void AHandController::ThumbAnimReleased()
 {
-	UE_LOG(LogTemp, Display, TEXT("ThumbAnimReleased"));
 	bThumbsAnim = false;
 }
 
@@ -127,7 +125,6 @@ void AHandController::HandThumbstickY(float AxisValue)
 {
     if (FMath::Abs(AxisValue) >= 0.5f)
     {
-        UE_LOG(LogTemp, Display, TEXT("HandThumbstickY: %f"), AxisValue);
     }
 }
 
@@ -135,7 +132,6 @@ void AHandController::HandThumbstickX(float AxisValue)
 {
     if (FMath::Abs(AxisValue) >= 0.5f)
     {
-        UE_LOG(LogTemp, Display, TEXT("HandThumbstickX: %f"), AxisValue);
     }
 }
 
@@ -143,7 +139,6 @@ void AHandController::HandTouchpadY(float AxisValue)
 {
     if (FMath::Abs(AxisValue) >= 0.5f)
     {
-        UE_LOG(LogTemp, Display, TEXT("HandTouchpadY: %f"), AxisValue);
     }
 }
 
@@ -151,7 +146,6 @@ void AHandController::HandTouchpadX(float AxisValue)
 {
     if (FMath::Abs(AxisValue) >= 0.5f)
     {
-        UE_LOG(LogTemp, Display, TEXT("HandTouchpadX: %f"), AxisValue);
     }
 }
 
@@ -159,16 +153,28 @@ void AHandController::HandTriggerAxis(float AxisValue)
 {
     if (FMath::Abs(AxisValue) >= 0.5f)
     {
-        UE_LOG(LogTemp, Display, TEXT("HandTriggerAxis: %f"), AxisValue);
     }
 }
 
 void AHandController::HandGripAxis(float AxisValue)
 {
-    if (FMath::Abs(AxisValue) >= 0.5f)
+    if (FMath::Abs(AxisValue) >= 0.3f)
     {
-        UE_LOG(LogTemp, Display, TEXT("HandGripAxis: %f"), AxisValue);
+    	
+    	bThumbsPointAnim = true;
     }
+	if (FMath::Abs(AxisValue) >= 0.7f)
+    {
+    	
+		bGripAnim = true;
+		bThumbsPointAnim = false;
+    }
+	if (FMath::Abs(AxisValue) < 0.3f)
+	{
+    	
+		bGripAnim = false;
+		bThumbsPointAnim = false;
+	}
 }
 
 
@@ -182,7 +188,7 @@ bool AHandController::BIsRightHand()
 	{
 		return false;
 	}
-	UE_LOG(LogTemp, Display, TEXT("Error f$4 There is no EControllerHand"));
+	UE_LOG(LogTemp, Warning, TEXT("Error f$4 There is no EControllerHand"));
 	return false;
 }
 

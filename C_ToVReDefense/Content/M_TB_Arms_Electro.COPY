@@ -1,0 +1,439 @@
+Begin Object Class=/Script/Engine.Material Name="M_TB_Arms_Electro"
+   Begin Object Class=/Script/UnrealEd.SceneThumbnailInfoWithPrimitive Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_77"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_76"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_9"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_6"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_1"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_0"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureObject Name="MaterialExpressionTextureObject_3"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureObject Name="MaterialExpressionTextureObject_2"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_24"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_14"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_13"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_9"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_6"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_55"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_54"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_5"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_2"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_15"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_13"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_12"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_11"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_10"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_0"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_20"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_2"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_0"
+   End Object
+   Begin Object Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_77"
+      DefaultValue=(R=0.000000,G=0.920000,B=0.582494,A=1.000000)
+      ParameterName="TubeColor"
+      ExpressionGUID=C7BDA7FE4CC99A216DA04D9DAB7221C0
+      Group="Variant"
+      MaterialExpressionEditorX=-622
+      MaterialExpressionEditorY=-491
+      MaterialExpressionGuid=7090AA3747BF0954DDE4C98DC922913C
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionVectorParameter_76"
+      DefaultValue=(R=0.000000,G=0.035000,B=0.028341,A=1.000000)
+      ParameterName="ArmColor"
+      ExpressionGUID=4CD12E674A03F84F7E30F1B2B72BF41F
+      Group="Variant"
+      MaterialExpressionEditorX=-896
+      MaterialExpressionEditorY=496
+      MaterialExpressionGuid=AA2801364F85BD817AB731B7A22F882A
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_9"
+      Texture=Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Skins/Tier1/CS_Twinblast_Electro/T_TwinBlast_Coat_Head_Electro_Mask.T_TwinBlast_Coat_Head_Electro_Mask"'
+      MaterialExpressionEditorX=-208
+      MaterialExpressionEditorY=-144
+      MaterialExpressionGuid=9274891E4D252B1314F77BA7F9488BEE
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_6"
+      Texture=Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Textures/T_TwinBlast_Arms_RGB.T_TwinBlast_Arms_RGB"'
+      SamplerType=SAMPLERTYPE_LinearColor
+      MaterialExpressionEditorX=-704
+      MaterialExpressionEditorY=256
+      MaterialExpressionGuid=F2CCE40D42817087E52AD48461BCF6C8
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_1"
+      SamplerSource=SSM_Wrap_WorldGroupSettings
+      Texture=Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Textures/T_TwinBlast_Arms_MASK.T_TwinBlast_Arms_MASK"'
+      MaterialExpressionEditorX=-592
+      MaterialExpressionEditorY=928
+      MaterialExpressionGuid=2E9C30DA441B0102489ED8AF659589C3
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_0"
+      SamplerSource=SSM_Wrap_WorldGroupSettings
+      Texture=Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Textures/T_TwinBlast_Arms_N.T_TwinBlast_Arms_N"'
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=672
+      MaterialExpressionGuid=8D2E9ED84ADF7FEDC91319B96B0E4000
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureObject_3"
+      Texture=Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Textures/T_TwinBlast_Arms_Decals.T_TwinBlast_Arms_Decals"'
+      MaterialExpressionEditorX=272
+      MaterialExpressionEditorY=-272
+      MaterialExpressionGuid=0D07577C40D19EEA13D01DAD5D335D4A
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureObject_2"
+      Texture=Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Textures/T_TwinBlast_Arms_RGB.T_TwinBlast_Arms_RGB"'
+      SamplerType=SAMPLERTYPE_LinearColor
+      MaterialExpressionEditorX=1248
+      MaterialExpressionEditorY=400
+      MaterialExpressionGuid=A71DFECF46E20AEBE069A7B1C979CA35
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_24"
+      DefaultValue=20.000000
+      ParameterName="PulsePower"
+      ExpressionGUID=8EF4BA2D40332B4EE00FB290198FED7B
+      MaterialExpressionEditorX=-475
+      MaterialExpressionEditorY=-141
+      MaterialExpressionGuid=0850025B450F7AD1CE762F93596BEE3D
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_14"
+      DefaultValue=1.400000
+      ParameterName="TronBrightness"
+      ExpressionGUID=E49FA0EB44B01F50C94A8AA57F8ED401
+      MaterialExpressionEditorX=-704
+      MaterialExpressionEditorY=-288
+      MaterialExpressionGuid=73B5D526491842AF8B01149D2884A0AF
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_13"
+      DefaultValue=0.500000
+      ParameterName="PulseTiling"
+      ExpressionGUID=FD789F2243360836A8220EA2AC910A9C
+      MaterialExpressionEditorX=-672
+      MaterialExpressionEditorY=-208
+      MaterialExpressionGuid=207939A441E52B91BCBC388C1CDE3A26
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0"
+      ParameterName="TwinblastArmsEmissive"
+      ExpressionGUID=573821CB416B0FC5E5EC87B64FDDD614
+      MaterialExpressionEditorX=432
+      MaterialExpressionEditorY=656
+      MaterialExpressionGuid=42CB77844E080CA256EA2CAA97DEFB43
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1"
+      A=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_1"',OutputIndex=2,Mask=1,MaskG=1)
+      B=(Expression=MaterialExpressionScalarParameter'"M_TB_Arms_Electro:MaterialExpressionScalarParameter_0"')
+      MaterialExpressionEditorX=592
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=C014A5444878C00D10C764920F89EA8F
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_9"
+      MaterialFunction=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_CharacterEffects.MF_CharacterEffects"'
+      FunctionInputs(0)=(ExpressionInputId=D86699994666019FBA837F91C5CC55F1,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_10"',InputName="Material"))
+      FunctionInputs(1)=(ExpressionInputId=99430CBE4EE6BCCEC06EDAB2EA8A4CCA,Input=(OutputIndex=-1,InputName="UseOrionRimLight"))
+      FunctionInputs(2)=(ExpressionInputId=02296F204314AA96964DBFAB6621A155,Input=(OutputIndex=-1,InputName="BrightnessModulation"))
+      FunctionInputs(3)=(ExpressionInputId=53C517D844CA76CE7280CE9E614FEDD9,Input=(OutputIndex=-1,InputName="Occlusion"))
+      FunctionOutputs(0)=(ExpressionOutputId=916A7D234BA8AB3A44CD54ABCB9644E5,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=1840
+      MaterialExpressionEditorY=-64
+      MaterialExpressionGuid=C4DA8A7D497A6CE02718BA903DBF4E80
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_6"
+      MaterialFunction=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/ML_Dark_Metal.ML_Dark_Metal"'
+      FunctionInputs(0)=(ExpressionInputId=E15559BD405CDB1ABB4E14BC616E9F99,Input=(OutputIndex=-1,InputName="Mask"))
+      FunctionInputs(1)=(ExpressionInputId=99A2236046E87A3BC13904AB8D8399B3,Input=(OutputIndex=-1,InputName="BottomMaterials"))
+      FunctionInputs(2)=(ExpressionInputId=2D64E67D406C17E59CA3EA8EEC68F850,Input=(OutputIndex=-1,InputName="---------------------"))
+      FunctionInputs(3)=(ExpressionInputId=3CAC80794EA633328006D9B022F07D01,Input=(InputName="Tint",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(4)=(ExpressionInputId=D40B871847FBFD2DDB7F92B403FA8C31,Input=(OutputIndex=-1,InputName="Tiling"))
+      FunctionInputs(5)=(ExpressionInputId=124B2EDB45D5AB52EB105382214DCFAF,Input=(OutputIndex=-1,InputName="ScratchColor"))
+      FunctionInputs(6)=(ExpressionInputId=EED010C847E05AECD3051299C1E277CA,Input=(OutputIndex=-1,InputName="GrimeColor"))
+      FunctionInputs(7)=(ExpressionInputId=82254F954C3CC66CE7DE9FB03E1513FD,Input=(OutputIndex=-1,InputName="MainRoughnessMax"))
+      FunctionInputs(8)=(ExpressionInputId=A0FE35B540C4FA57B3CE36B7B7B616AD,Input=(OutputIndex=-1,InputName="ScratchMASK"))
+      FunctionInputs(9)=(ExpressionInputId=3EEB7EB04F170B1EDA9A56BA72A51918,Input=(OutputIndex=-1,InputName="GrimeMASK"))
+      FunctionOutputs(0)=(ExpressionOutputId=2CDB93144651310CC53D8C8EF02786B1,Output=(OutputName="MaterialAttributes"))
+      MaterialExpressionEditorX=-752
+      MaterialExpressionEditorY=-48
+      MaterialExpressionGuid=DCBAE21747DEF81D17F58FB0A081680A
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="MaterialAttributes")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_55"
+      MaterialFunction=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/ML_SoftMetal01.ML_SoftMetal01"'
+      FunctionInputs(0)=(ExpressionInputId=A886062F47B67D044C41B2BB478B7BC1,Input=(OutputIndex=-1,InputName="Metallic Shading"))
+      FunctionInputs(1)=(ExpressionInputId=CE1B38C94D3CD8FAC81DA2AECD1C1734,Input=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_6"',OutputIndex=1,InputName="Grunge",Mask=1,MaskR=1))
+      FunctionInputs(2)=(ExpressionInputId=ACCB300B4DD982681DC0F890C45C7983,Input=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_6"',OutputIndex=2,InputName="Scratch",Mask=1,MaskG=1))
+      FunctionInputs(3)=(ExpressionInputId=ADFA41AA4C9FEE15C11A229C23D1AD40,Input=(OutputIndex=-1,InputName="Tint"))
+      FunctionInputs(4)=(ExpressionInputId=84215DA546A551655EE6BC8B6AED26BE,Input=(OutputIndex=-1,InputName="Brightness"))
+      FunctionInputs(5)=(ExpressionInputId=E5BE05304FF98EB4BB9E6089B06F9E7E,Input=(OutputIndex=-1,InputName="Tiling"))
+      FunctionInputs(6)=(ExpressionInputId=6C661E524ED23E20A387B69222BB7D99,Input=(OutputIndex=-1,InputName="RoughnessModulation"))
+      FunctionInputs(7)=(ExpressionInputId=7BCF80604BE38F2602CAF5AF8438EA28,Input=(OutputIndex=-1,InputName="Metallic"))
+      FunctionInputs(8)=(ExpressionInputId=C96AD8AA49DCBA4F8532CAA365CFCEB9,Input=(OutputIndex=-1,InputName="GrungeTint"))
+      FunctionInputs(9)=(ExpressionInputId=39E1F07449074704E6CF878823160641,Input=(OutputIndex=-1,InputName="ScatchTint"))
+      FunctionOutputs(0)=(ExpressionOutputId=9CE3E8334E850358E85C4D8B983C5493,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-176
+      MaterialExpressionEditorY=688
+      MaterialExpressionGuid=06E2AC3D46E864A464B832A11EA0560C
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_54"
+      MaterialFunction=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Painted/ML_MetallicClearCoat.ML_MetallicClearCoat"'
+      FunctionInputs(0)=(ExpressionInputId=4F7193A9497AEA79C796DBB78C2B39A1,Input=(OutputIndex=-1,InputName="Tiling"))
+      FunctionInputs(1)=(ExpressionInputId=8528D8EE43F53290555FA3B17A4ABB2F,Input=(Expression=MaterialExpressionLinearInterpolate'"M_TB_Arms_Electro:MaterialExpressionLinearInterpolate_20"',InputName="Grime"))
+      FunctionInputs(2)=(ExpressionInputId=DB8641B24D07F82B6740A0A92AD8045B,Input=(Expression=MaterialExpressionVectorParameter'"M_TB_Arms_Electro:MaterialExpressionVectorParameter_76"',InputName="Color",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionOutputs(0)=(ExpressionOutputId=947DB9894D38876ED3056D97D8877014,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-256
+      MaterialExpressionEditorY=432
+      MaterialExpressionGuid=41F4DB754276167AB7E33B8C28F4C310
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_5"
+      MaterialFunction=MaterialFunction'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Materials/MatLayerBlend_Decal.MatLayerBlend_Decal"'
+      FunctionInputs(0)=(ExpressionInputId=08A82E194C17EA9C7645E5945D6A1784,Input=(Expression=MaterialExpressionConstant'"M_TB_Arms_Electro:MaterialExpressionConstant_0"',InputName="DecalRoughness"))
+      FunctionInputs(1)=(ExpressionInputId=6FE112154C50A9345FD725B6644D6A64,Input=(Expression=MaterialExpressionTextureObject'"M_TB_Arms_Electro:MaterialExpressionTextureObject_3"',InputName="DecalSheet"))
+      FunctionInputs(2)=(ExpressionInputId=9E2AF06746DC6F5ABBBC828CFE0601B3,Input=(OutputIndex=-1,InputName="DecalNormalFlatness"))
+      FunctionInputs(3)=(ExpressionInputId=C7584F90430CF6040EDB439CB5D4E1EB,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_0"',InputName="Base Material"))
+      FunctionOutputs(0)=(ExpressionOutputId=ECFE303F499D1D38BBFE47A33281F97A,Output=(OutputName="Blended Material"))
+      MaterialExpressionEditorX=672
+      MaterialExpressionEditorY=-208
+      MaterialExpressionGuid=6E36985D418A86E6DB4E1BAA0BDFAC6B
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="Blended Material")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_2"
+      MaterialFunction=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/ML_Gray_Gun_Metal2.ML_Gray_Gun_Metal2"'
+      FunctionInputs(0)=(ExpressionInputId=E15559BD405CDB1ABB4E14BC616E9F99,Input=(OutputIndex=-1,InputName="Mask"))
+      FunctionInputs(1)=(ExpressionInputId=99A2236046E87A3BC13904AB8D8399B3,Input=(OutputIndex=-1,InputName="BottomMaterials"))
+      FunctionInputs(2)=(ExpressionInputId=3CAC80794EA633328006D9B022F07D01,Input=(OutputIndex=-1,InputName="Tint"))
+      FunctionInputs(3)=(ExpressionInputId=D40B871847FBFD2DDB7F92B403FA8C31,Input=(Expression=MaterialExpressionConstant'"M_TB_Arms_Electro:MaterialExpressionConstant_2"',InputName="Tiling"))
+      FunctionInputs(4)=(ExpressionInputId=A0FE35B540C4FA57B3CE36B7B7B616AD,Input=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_6"',OutputIndex=2,InputName="ScratchMASK",Mask=1,MaskG=1))
+      FunctionInputs(5)=(ExpressionInputId=3EEB7EB04F170B1EDA9A56BA72A51918,Input=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_6"',OutputIndex=1,InputName="GrimeMASK",Mask=1,MaskR=1))
+      FunctionOutputs(0)=(ExpressionOutputId=2CDB93144651310CC53D8C8EF02786B1,Output=(OutputName="MaterialAttributes"))
+      MaterialExpressionEditorX=-304
+      MaterialExpressionEditorY=144
+      MaterialExpressionGuid=40DA100A4E8F6C07698961AB92F51E03
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="MaterialAttributes")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_15"
+      MaterialFunction=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Emissive.MatLayerBlend_Emissive"'
+      FunctionInputs(0)=(ExpressionInputId=B6A66478423F339DD914999E5208A17C,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_5"',InputName="Material"))
+      FunctionInputs(1)=(ExpressionInputId=CF2A80F745401303681BAEB4CDF7B538,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_12"',InputName="Emissive"))
+      FunctionOutputs(0)=(ExpressionOutputId=2B75887C4FC1F11625A6F7A1F0176058,Output=(OutputName="Blended Material"))
+      MaterialExpressionEditorX=1008
+      MaterialExpressionEditorY=128
+      MaterialExpressionGuid=2E60A779453E2902E8859C9CEE7A9AA1
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="Blended Material")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_13"
+      MaterialFunction=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Synthetics/ML_PulsingTronTube.ML_PulsingTronTube"'
+      FunctionInputs(0)=(ExpressionInputId=664938E040D0582EC91C299D4E44668F,Input=(Expression=MaterialExpressionScalarParameter'"M_TB_Arms_Electro:MaterialExpressionScalarParameter_14"',InputName="Brightness"))
+      FunctionInputs(1)=(ExpressionInputId=3F43D5374C119D3408275FAA2F203ED8,Input=(InputName="isHorizontalGradient"))
+      FunctionInputs(2)=(ExpressionInputId=BF9CCE5D400171AB93D86CAE210A7C3A,Input=(Expression=MaterialExpressionScalarParameter'"M_TB_Arms_Electro:MaterialExpressionScalarParameter_13"',InputName="Tiling"))
+      FunctionInputs(3)=(ExpressionInputId=F630C75A4C6FCCA3581A0FA535481B65,Input=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_0"',InputName="BakedNormal",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(4)=(ExpressionInputId=5E20803747F6D25F2C99C598D438ACCE,Input=(Expression=MaterialExpressionScalarParameter'"M_TB_Arms_Electro:MaterialExpressionScalarParameter_24"',InputName="PulsePower"))
+      FunctionInputs(5)=(ExpressionInputId=E3674E9940B65ABBB15D7DA9FA6BD1C3,Input=(Expression=MaterialExpressionVectorParameter'"M_TB_Arms_Electro:MaterialExpressionVectorParameter_77"',InputName="Color",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionOutputs(0)=(ExpressionOutputId=014AD8E54716C9E1D9C2849BA84270A9,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=-368
+      MaterialExpressionEditorY=-336
+      MaterialExpressionGuid=A8055BA646ECF1CCDBA91CB929F2A667
+      Material=Material'"M_TB_Arms_Electro"'
+      Desc="Purple Tech"
+      bCommentBubbleVisible=True
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_12"
+      MaterialFunction=MaterialFunction'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Materials/MF_TwinBalstArmEmissive2.MF_TwinBalstArmEmissive2"'
+      FunctionInputs(0)=(ExpressionInputId=D50B99214BC96BDBE2EAA0A12480AFEB,Input=(Expression=MaterialExpressionMultiply'"M_TB_Arms_Electro:MaterialExpressionMultiply_1"',InputName="EmissiveScale"))
+      FunctionOutputs(0)=(ExpressionOutputId=BEB75AF545E30B4C1BFEAE80F16FB8B7,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=784
+      MaterialExpressionEditorY=272
+      MaterialExpressionGuid=AB0BD5274C529E5252BD4FBD4AC18FFD
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_11"
+      MaterialFunction=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_OrionCharacterAO.MF_OrionCharacterAO"'
+      FunctionInputs(0)=(ExpressionInputId=EED5A4B94F5E84B0B38E9B8814718F28,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_15"',InputName="Material"))
+      FunctionInputs(1)=(ExpressionInputId=F7968A4E45803F55D1C80E86537D1713,Input=(OutputIndex=-1,InputName="Metallic AO"))
+      FunctionInputs(2)=(ExpressionInputId=D37EDDB44F141DA3CACD4F80D94281E4,Input=(OutputIndex=-1,InputName="Edge Effect"))
+      FunctionInputs(3)=(ExpressionInputId=44FD682B425A7B3D7A6A7EBDA7C5D305,Input=(OutputIndex=-1,InputName="AO Metal Intensity"))
+      FunctionInputs(4)=(ExpressionInputId=F247A0C14979223781C50EBFA1EB10AC,Input=(Expression=MaterialExpressionTextureObject'"M_TB_Arms_Electro:MaterialExpressionTextureObject_2"',InputName="AOTexture"))
+      FunctionInputs(5)=(ExpressionInputId=00C82C19434AFCA5D51683B6D2FA22D3,Input=(OutputIndex=-1,InputName="Accumulate"))
+      FunctionOutputs(0)=(ExpressionOutputId=EC93CF8F416786B5C39FEEB7F654C974,Output=(OutputName="Result"))
+      FunctionOutputs(1)=(ExpressionOutputId=1A2843E8414C0044E3B496B9B62DC007,Output=(OutputName="Occlusion"))
+      MaterialExpressionEditorX=1280
+      MaterialExpressionEditorY=-144
+      MaterialExpressionGuid=6FA551434D88F0D66C37A8A2D4C46325
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="Result")
+      Outputs(1)=(OutputName="Occlusion")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_10"
+      MaterialFunction=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_CharacterGradient.MF_CharacterGradient"'
+      FunctionInputs(0)=(ExpressionInputId=0217319D4BE0AA9E6623429EC2E69B9E,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_11"',InputName="In"))
+      FunctionOutputs(0)=(ExpressionOutputId=D1D253594675CE48C8D592B779753C0D,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=1568
+      MaterialExpressionEditorY=-64
+      MaterialExpressionGuid=7F6581914E396BB7EB734CA159E9F827
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_0"
+      MaterialFunction=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_TenLayerBlend.MatLayerBlend_TenLayerBlend"'
+      FunctionInputs(0)=(ExpressionInputId=9D0ADB9541CF6860FF5AEBA36FDDFEC8,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_13"',InputName="Layer10"))
+      FunctionInputs(1)=(ExpressionInputId=2A0F0DD14615FD9B59CD05A31A540142,Input=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_9"',OutputIndex=2,InputName="Layer10_Mask",Mask=1,MaskG=1))
+      FunctionInputs(2)=(ExpressionInputId=B33C81A243D6952955FB3CAEBE60B744,Input=(OutputIndex=-1,InputName="Layer9"))
+      FunctionInputs(3)=(ExpressionInputId=A2C2248A4631D4F6CB7ED1A07E6AFE74,Input=(OutputIndex=-1,InputName="Layer9_Mask"))
+      FunctionInputs(4)=(ExpressionInputId=D953569B4AA4070168325499F9177A98,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_6"',InputName="Layer8"))
+      FunctionInputs(5)=(ExpressionInputId=942B109545436BD6B4BC6AA002A1CA48,Input=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_6"',OutputIndex=3,InputName="Layer8_Mask\n",Mask=1,MaskB=1))
+      FunctionInputs(6)=(ExpressionInputId=5AA93BDD41C7AFDF9F9E8C9677E3455A,Input=(OutputIndex=-1,InputName="Layer7"))
+      FunctionInputs(7)=(ExpressionInputId=6B70FBBB432B135AB3AE9BA5BD0937F9,Input=(OutputIndex=-1,InputName="Layer7_Mask"))
+      FunctionInputs(8)=(ExpressionInputId=276DD04347A9FE6778C84E9FA5F412B7,Input=(InputName="Layer6"))
+      FunctionInputs(9)=(ExpressionInputId=90BA729C4A2EE837DA738399F4694296,Input=(OutputIndex=3,InputName="Layer6_Mask\n",Mask=1,MaskB=1))
+      FunctionInputs(10)=(ExpressionInputId=F0764344418207CF3E4727822CECBB9C,Input=(InputName="Layer5"))
+      FunctionInputs(11)=(ExpressionInputId=5426C26E46D7379F5126E188D76A7EC0,Input=(OutputIndex=4,InputName="Layer5_Mask",Mask=1,MaskA=1))
+      FunctionInputs(12)=(ExpressionInputId=F8D07F7048A557CCF4A616807C16A1CC,Input=(InputName="Layer4"))
+      FunctionInputs(13)=(ExpressionInputId=83AC7C7646B82D0B28CCDCB800FB19D7,Input=(OutputIndex=1,InputName="Layer4_Mask",Mask=1,MaskR=1))
+      FunctionInputs(14)=(ExpressionInputId=B06B997C40F47FDE90EEDDB0A0DFBCFF,Input=(InputName="Layer3"))
+      FunctionInputs(15)=(ExpressionInputId=A7F17E784A5FDC440BA3B0AC54399F9E,Input=(OutputIndex=2,InputName="Layer3_Mask",Mask=1,MaskG=1))
+      FunctionInputs(16)=(ExpressionInputId=D5FCC2C442DA1A8B418CFCB4D3E6C7BD,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_2"',InputName="Layer2"))
+      FunctionInputs(17)=(ExpressionInputId=0794112B4F1E6051EC801188BCEADCDA,Input=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_1"',OutputIndex=3,InputName="Layer2_Mask",Mask=1,MaskB=1))
+      FunctionInputs(18)=(ExpressionInputId=560A9DCF4532E53F7CCC149B7968DF01,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_54"',InputName="Layer1"))
+      FunctionInputs(19)=(ExpressionInputId=368DF6CD477F0CC8CC09E29E1FD47F86,Input=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_1"',OutputIndex=4,InputName="Layer1_Mask",Mask=1,MaskA=1))
+      FunctionInputs(20)=(ExpressionInputId=748149B04D48DFCB82BF879813434CA3,Input=(Expression=MaterialExpressionMaterialFunctionCall'"M_TB_Arms_Electro:MaterialExpressionMaterialFunctionCall_55"',InputName="Background"))
+      FunctionInputs(21)=(ExpressionInputId=DDE94EC04723993DBF07C2BA55511E4F,Input=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_0"',InputName="<BakedNormal>",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionOutputs(0)=(ExpressionOutputId=59396F3E42588C22FF7CC0AE2D20A27C,Output=(OutputName="Blended Material"))
+      MaterialExpressionEditorX=91
+      MaterialExpressionEditorY=-9
+      MaterialExpressionGuid=A3571CA144FF6C04EA1C7EB8C32D0391
+      Material=Material'"M_TB_Arms_Electro"'
+      Outputs(0)=(OutputName="Blended Material")
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_20"
+      Alpha=(Expression=MaterialExpressionTextureSample'"M_TB_Arms_Electro:MaterialExpressionTextureSample_6"',OutputIndex=1,Mask=1,MaskR=1)
+      ConstA=0.200000
+      MaterialExpressionEditorX=-448
+      MaterialExpressionEditorY=576
+      MaterialExpressionGuid=6F8494C348B7577C705D45BDBAC38B63
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_2"
+      R=8.000000
+      MaterialExpressionEditorX=-464
+      MaterialExpressionEditorY=208
+      MaterialExpressionGuid=BF6D4D084B599B124611AF84A9F5E55A
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_0"
+      R=0.400000
+      MaterialExpressionEditorX=497
+      MaterialExpressionEditorY=-395
+      MaterialExpressionGuid=9E8F425F41994E89F9A887BF0DF1CC18
+      Material=Material'"M_TB_Arms_Electro"'
+   End Object
+   BaseColor=(Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   Normal=(Expression=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_0"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   ShadingModel=MSM_ClearCoat
+   ShadingModels=(ShadingModelField=16)
+   MaterialAttributes=(Expression=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_9"')
+   bUsedWithSkeletalMesh=True
+   bUsedWithMorphTargets=True
+   EditorX=2112
+   EditorY=-80
+   Expressions(0)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_0"'
+   Expressions(1)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_9"'
+   Expressions(2)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_0"'
+   Expressions(3)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_10"'
+   Expressions(4)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_11"'
+   Expressions(5)=MaterialExpressionTextureObject'"MaterialExpressionTextureObject_2"'
+   Expressions(6)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_1"'
+   Expressions(7)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_55"'
+   Expressions(8)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_54"'
+   Expressions(9)=MaterialExpressionConstant'"MaterialExpressionConstant_2"'
+   Expressions(10)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_2"'
+   Expressions(11)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_6"'
+   Expressions(12)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_5"'
+   Expressions(13)=MaterialExpressionTextureObject'"MaterialExpressionTextureObject_3"'
+   Expressions(14)=MaterialExpressionConstant'"MaterialExpressionConstant_0"'
+   Expressions(15)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_6"'
+   Expressions(16)=MaterialExpressionMultiply'"MaterialExpressionMultiply_1"'
+   Expressions(17)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_12"'
+   Expressions(18)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_15"'
+   Expressions(19)=MaterialExpressionScalarParameter'"MaterialExpressionScalarParameter_0"'
+   Expressions(20)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_20"'
+   Expressions(21)=MaterialExpressionScalarParameter'"MaterialExpressionScalarParameter_14"'
+   Expressions(22)=MaterialExpressionScalarParameter'"MaterialExpressionScalarParameter_13"'
+   Expressions(23)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_13"'
+   Expressions(24)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_9"'
+   Expressions(25)=MaterialExpressionScalarParameter'"MaterialExpressionScalarParameter_24"'
+   Expressions(26)=MaterialExpressionVectorParameter'"MaterialExpressionVectorParameter_76"'
+   Expressions(27)=MaterialExpressionVectorParameter'"MaterialExpressionVectorParameter_77"'
+   bUseMaterialAttributes=True
+   StateId=5561E44A44A1BB8F3D3BE5BD05E23BE5
+   CachedExpressionData=(Parameters=(RuntimeEntries[0]=(NameHashes=(1255061955086097374,5192602680273933739,5234846365250234952,6588170487284532632,7191321006868261235,7720769601986512719,7976236386521592162,11967539690066293668,13186090371645399113,14434945247000684251,18349451555417331729),ParameterInfos=((Name="IriExponent"),(Name="BrightnessAdjust"),(Name="HitFlashBrightness"),(Name="FadeOut"),(Name="VertexDisplacePower"),(Name="TronBrightness"),(Name="IriMask"),(Name="TwinblastArmsEmissive"),(Name="Damage"),(Name="PulseTiling"),(Name="PulsePower")),ExpressionGuids=(17486C3349B017A90E72D196422F2E19,E5E2D8F245FC9058744751906B498B47,33179C4545F669955FCB76B35BFA905D,CDC21EC8404B690940496A9E4E01C4B2,49A081524702AACF91F0D2935C7CC8FD,E49FA0EB44B01F50C94A8AA57F8ED401,80D46BC74F5E89BFA0B692888B33D9A4,573821CB416B0FC5E5EC87B64FDDD614,D78DF47844630D15E2A2FC9FF22F20EB,FD789F2243360836A8220EA2AC910A9C,66661AD54A80A2377A2D02BCDC8EB643)),RuntimeEntries[1]=(NameHashes=(2236351998331959773,2515821509518194741,3650469821787838221,5337370255084020757,7971048503508376167,12620529011228201850,15102713736029196967,16001865301981087660,17601771530555390208),ParameterInfos=((Name="EmissiveColor"),(Name="ArmColor"),(Name="Color0"),(Name="TubeColor"),(Name="BaseColorDiv"),(Name="NoiseTextureSize"),(Name="ScaleNormal"),(Name="Color1"),(Name="DisplaceValue")),ExpressionGuids=(5822FED44E9ACC93CA9DB19195BB80F6,4CD12E674A03F84F7E30F1B2B72BF41F,57B5E8A54A81F7ACF428FAABACCE55CA,C7BDA7FE4CC99A216DA04D9DAB7221C0,F03D9893456532CF8367D78FAA504727,F5E4FEFC471ED9C24385CA9236A0A92A,C304FD324C3EBD29B14D9EA4E0191964,BF9FE23742318ED1BC44048F3682EA6A,5F806C3443492A61F05955A93F9BDA04)),RuntimeEntries[2]=(NameHashes=(11173991435168228278),ParameterInfos=((Name="FadeMask")),ExpressionGuids=(196FF15745B61B00E5AE0BAE07877C4F)),ScalarValues=(0.200000,1.250000,0.200000,0.000000,1.500000,1.400000,0.030000,0.000000,0.000000,0.500000,2.000000),VectorValues=((R=0.000000,G=1.000000,B=0.320607,A=1.000000),(R=0.000000,G=0.035000,B=0.028341,A=1.000000),(R=0.005000,G=0.005000,B=0.005000,A=0.000000),(R=0.000000,G=0.920000,B=0.582494,A=1.000000),(R=0.270498,G=0.371238,B=0.558340,A=1.000000),(R=100.000000,G=100.000000,B=100.000000,A=0.000000),(R=1.000000,G=1.000000,B=0.400000,A=0.000000),(R=0.100000,G=0.100000,B=0.100000,A=0.000000),(R=0.000000,G=0.000000,B=326.059723,A=0.000000)),TextureValues=(Texture2D'"/Game/ParagonTwinblast/Characters/Global/Textures/Noise/T_AtmosphericCloudNoise03.T_AtmosphericCloudNoise03"'),EditorOnlyEntries[0]=(NameHashes=(12994812403483032152),ParameterInfos=((Name="Luminance from Linear")),ExpressionGuids=(25B514244D009E1DE7E15DB76B796BDD)),StaticSwitchValues=(False),ScalarMinMaxValues=((X=0.000000,Y=0.000000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.000000),(X=0.000000,Y=1.000000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.000000)),ScalarCurveValues=(None,None,None,None,None,None,None,None,None,None,None),ScalarCurveAtlasValues=(None,None,None,None,None,None,None,None,None,None,None),VectorChannelNameValues=((),(),(),(),(),(),(),(),()),VectorUsedAsChannelMaskValues=(False,False,False,False,False,False,False,False,False),TextureChannelNameValues=(())),ReferencedTextures=(Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Textures/T_TwinBlast_Arms_N.T_TwinBlast_Arms_N"',Texture2D'"/Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse"',Texture2D'"/Engine/EngineMaterials/DefaultNormal.DefaultNormal"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/T_TestML_Mask.T_TestML_Mask"',None,Texture2D'"/Engine/EngineMaterials/Good64x64TilingNoiseHighFreq.Good64x64TilingNoiseHighFreq"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/Textures/Noise/T_AtmosphericCloudNoise03.T_AtmosphericCloudNoise03"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/Textures/Noise/T_AtmosphericCloudNoise01_N.T_AtmosphericCloudNoise01_N"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/Textures/Noise/T_AtmosphericCloudNoise01.T_AtmosphericCloudNoise01"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/T_Blue_Metal02.T_Blue_Metal02"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Rubber/T_Blank_N.T_Blank_N"',Texture2D'"/Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/Textures/T_Twinblast_UV2_RGB.T_Twinblast_UV2_RGB"',Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Textures/T_TwinBlast_Arms_RGB.T_TwinBlast_Arms_RGB"',Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Textures/T_TwinBlast_Arms_MASK.T_TwinBlast_Arms_MASK"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/T_ML_Aluminum01.T_ML_Aluminum01"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/T_ML_Aluminum01_N.T_ML_Aluminum01_N"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Painted/T_PaintScratches.T_PaintScratches"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/T_Primer_Black_Metal2.T_Primer_Black_Metal2"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/T_Rough_Metal_N.T_Rough_Metal_N"',Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Textures/T_TwinBlast_Arms_Decals.T_TwinBlast_Arms_Decals"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/T_Dark_Metal_D_2.T_Dark_Metal_D_2"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/Hair/Textures/T_gradient_stasis.T_gradient_stasis"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Synthetics/T_GradientLaser_M.T_GradientLaser_M"',Texture2D'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Synthetics/T_Flat_normal.T_Flat_normal"',Texture2D'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Skins/Tier1/CS_Twinblast_Electro/T_TwinBlast_Coat_Head_Electro_Mask.T_TwinBlast_Coat_Head_Electro_Mask"'),FunctionInfos=((StateId=FFAF4A8A44D880C430183881CF498E2F,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Emissive.MatLayerBlend_Emissive"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=FC65A49949AECD5E6A8ED7AA796FCF28,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/ML__Blank.ML__Blank"'),(StateId=91BCB3CC44A5EAB986AA59AE4D4D8EA4,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Tint.MatLayerBlend_Tint"'),(StateId=8CA55C3B44F65D4DF20C4BA618FEEF1D,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_HitFlash.MF_HitFlash"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=FC65A49949AECD5E6A8ED7AA796FCF28,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/ML__Blank.ML__Blank"'),(StateId=B7C71B914E2BB667772D6CBE2AB55665,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/Gradient/LinearGradient.LinearGradient"'),(StateId=1F3C7ECC4653CAFB2A6AEE82B1F2F3A5,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/ImageAdjustment/CheapContrast.CheapContrast"'),(StateId=B7C71B914E2BB667772D6CBE2AB55665,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/Gradient/LinearGradient.LinearGradient"'),(StateId=1F3C7ECC4653CAFB2A6AEE82B1F2F3A5,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/ImageAdjustment/CheapContrast.CheapContrast"'),(StateId=BDC7AB9C418E30AC5815BFB01EF022E9,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/Texturing/WorldAlignedTexture.WorldAlignedTexture"'),(StateId=B7C71B914E2BB667772D6CBE2AB55665,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/Gradient/LinearGradient.LinearGradient"'),(StateId=1F3C7ECC4653CAFB2A6AEE82B1F2F3A5,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/ImageAdjustment/CheapContrast.CheapContrast"'),(StateId=B7C71B914E2BB667772D6CBE2AB55665,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/Gradient/LinearGradient.LinearGradient"'),(StateId=1F3C7ECC4653CAFB2A6AEE82B1F2F3A5,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/ImageAdjustment/CheapContrast.CheapContrast"'),(StateId=BDC7AB9C418E30AC5815BFB01EF022E9,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/Texturing/WorldAlignedTexture.WorldAlignedTexture"'),(StateId=71028A8D47BF40373A3A0B8AD7B60E53,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Texturing/ScreenAlignedPixelToPixelUVs.ScreenAlignedPixelToPixelUVs"'),(StateId=22D58D0F45CC84AB89A3628B351D83C8,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/DitherTemporalAA.DitherTemporalAA"'),(StateId=F842F6B74E8E6427E81156B3AE529DD0,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_DeathFade.MF_DeathFade"'),(StateId=3D08B0E144440BEDC88BB6A5CB8F9E4D,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_BrightnessAdjust.MF_BrightnessAdjust"'),(StateId=54B3B05F4F0455324CA21E92FD9117F2,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MaterialLayerConstructors/MLC_Standard.MLC_Standard"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=2FBBE7234D5BBB6120A2F7A0E484EA1D,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MaterialLayerConstructors/MLC_ScratchAndGrime.MLC_ScratchAndGrime"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=FC65A49949AECD5E6A8ED7AA796FCF28,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/ML__Blank.ML__Blank"'),(StateId=CAC5FEDD493425B20A5F30BB501D7852,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_BreakBaseColor.MatLayerBlend_BreakBaseColor"'),(StateId=1EFF3EB24C70B1B9F4F5719A5716FA90,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/Shading/MetallicShading.MetallicShading"'),(StateId=4E6BD460492C34274C88C0AC9CC75FE2,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_OverrideBaseColor.MatLayerBlend_OverrideBaseColor"'),(StateId=230A3F5F4BB3150A013EEEB8E2B3D851,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/ML_blue_Metal.ML_blue_Metal"'),(StateId=FFAF4A8A44D880C430183881CF498E2F,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Emissive.MatLayerBlend_Emissive"'),(StateId=CAC5FEDD493425B20A5F30BB501D7852,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_BreakBaseColor.MatLayerBlend_BreakBaseColor"'),(StateId=5B938C50440B6892955AD79FCD1A8337,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat3Components.BreakOutFloat3Components"'),(StateId=BBC73C9A489BDEF712417E87F95808FC,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_OrionRimlight.MF_OrionRimlight"'),(StateId=E739E6E04C89EB165FB0178521911434,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_CharacterEffects.MF_CharacterEffects"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=F5C2D4774BA63455E32B4B960D7674B6,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/BlendAngleCorrectedNormals.BlendAngleCorrectedNormals"'),(StateId=63CF6400405C4A0AD2F218A7AAC5C7BF,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_BakedNormal.MatLayerBlend_BakedNormal"'),(StateId=1CCB5A6440B504111DD67C8D3DE6EF19,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_TenLayerBlend.MatLayerBlend_TenLayerBlend"'),(StateId=CEB825F749B3784E3010779E623B62DB,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/ObjectLocalBounds.ObjectLocalBounds"'),(StateId=5B938C50440B6892955AD79FCD1A8337,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat3Components.BreakOutFloat3Components"'),(StateId=62DA98654653E4493385F69C97674F2E,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/UVs/BoundingBoxBased_0-1_UVW.BoundingBoxBased_0-1_UVW"'),(StateId=5B938C50440B6892955AD79FCD1A8337,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat3Components.BreakOutFloat3Components"'),(StateId=4E6BD460492C34274C88C0AC9CC75FE2,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_OverrideBaseColor.MatLayerBlend_OverrideBaseColor"'),(StateId=F4C09FFE46396457E5373C9C81E9B7B0,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/ImageAdjustment/SCurve.SCurve"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=CAC5FEDD493425B20A5F30BB501D7852,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_BreakBaseColor.MatLayerBlend_BreakBaseColor"'),(StateId=B7C71B914E2BB667772D6CBE2AB55665,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/Gradient/LinearGradient.LinearGradient"'),(StateId=1F3C7ECC4653CAFB2A6AEE82B1F2F3A5,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/ImageAdjustment/CheapContrast.CheapContrast"'),(StateId=FFAF4A8A44D880C430183881CF498E2F,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Emissive.MatLayerBlend_Emissive"'),(StateId=CEB825F749B3784E3010779E623B62DB,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/ObjectLocalBounds.ObjectLocalBounds"'),(StateId=5B938C50440B6892955AD79FCD1A8337,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat3Components.BreakOutFloat3Components"'),(StateId=62DA98654653E4493385F69C97674F2E,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/UVs/BoundingBoxBased_0-1_UVW.BoundingBoxBased_0-1_UVW"'),(StateId=5B938C50440B6892955AD79FCD1A8337,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat3Components.BreakOutFloat3Components"'),(StateId=B016752B4A0395A8870B2F88C12420B5,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_RimLight.MF_RimLight"'),(StateId=F922BA404DF171E265CF8B9091B26084,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_CharacterGradient.MF_CharacterGradient"'),(StateId=3FB431B241B2DDFBBF17ED9A1F7B8616,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_OrionCharacterAO.MF_OrionCharacterAO"'),(StateId=1EFF3EB24C70B1B9F4F5719A5716FA90,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/Shading/MetallicShading.MetallicShading"'),(StateId=8002E4E0467C9BA07CD7E19069479C85,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MaterialLayerConstructors/MF_BaseColorTintAndContrast.MF_BaseColorTintAndContrast"'),(StateId=8002E4E0467C9BA07CD7E19069479C85,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MaterialLayerConstructors/MF_BaseColorTintAndContrast.MF_BaseColorTintAndContrast"'),(StateId=65B95FC44D328F7472C59FAAEA0E02FA,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MaterialLayerConstructors/MF_RoughnessAdjustment.MF_RoughnessAdjustment"'),(StateId=E0DD8E3E434C347BEFD14FBFF25993D5,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/ML_SoftMetal01.ML_SoftMetal01"'),(StateId=F456C06C4F13C42A0D3FA7B574E62D5D,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_Character_MaterialLayerQuality.MF_Character_MaterialLayerQuality"'),(StateId=FA3618074D968168A3688DBDEB91EDE1,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Painted/ML_MetallicClearCoat.ML_MetallicClearCoat"'),(StateId=54B3B05F4F0455324CA21E92FD9117F2,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MaterialLayerConstructors/MLC_Standard.MLC_Standard"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=2FBBE7234D5BBB6120A2F7A0E484EA1D,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MaterialLayerConstructors/MLC_ScratchAndGrime.MLC_ScratchAndGrime"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=FC65A49949AECD5E6A8ED7AA796FCF28,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/ML__Blank.ML__Blank"'),(StateId=CAC5FEDD493425B20A5F30BB501D7852,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_BreakBaseColor.MatLayerBlend_BreakBaseColor"'),(StateId=1EFF3EB24C70B1B9F4F5719A5716FA90,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/Shading/MetallicShading.MetallicShading"'),(StateId=4E6BD460492C34274C88C0AC9CC75FE2,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_OverrideBaseColor.MatLayerBlend_OverrideBaseColor"'),(StateId=F456C06C4F13C42A0D3FA7B574E62D5D,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_Character_MaterialLayerQuality.MF_Character_MaterialLayerQuality"'),(StateId=DEF26C704583BDC0E59A5384CC870720,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/ML_Gray_Gun_Metal2.ML_Gray_Gun_Metal2"'),(StateId=9AF98D624363A96B6474448A22753761,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Materials/MatLayerBlend_Decal.MatLayerBlend_Decal"'),(StateId=54B3B05F4F0455324CA21E92FD9117F2,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MaterialLayerConstructors/MLC_Standard.MLC_Standard"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=2FBBE7234D5BBB6120A2F7A0E484EA1D,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MaterialLayerConstructors/MLC_ScratchAndGrime.MLC_ScratchAndGrime"'),(StateId=892D7BBB413A0586E4D10BA8F0545AD5,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Standard.MatLayerBlend_Standard"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=4E29CA0246237CEC99E329BDC107C1AE,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions03/Blends/Lerp_ScratchGrime.Lerp_ScratchGrime"'),(StateId=FC65A49949AECD5E6A8ED7AA796FCF28,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/ML__Blank.ML__Blank"'),(StateId=F456C06C4F13C42A0D3FA7B574E62D5D,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialFunctions/MF_Character_MaterialLayerQuality.MF_Character_MaterialLayerQuality"'),(StateId=318A555744D4D5541F7316895609DCB6,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Metal/ML_Dark_Metal.ML_Dark_Metal"'),(StateId=FC5000CA4D8CA0692B6968BF9ED68904,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions01/ImageAdjustment/DeriveHDRfromLDR.DeriveHDRfromLDR"'),(StateId=9E92B882462FE3FF94A559B3A0CB6191,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Materials/MF_TwinBalstArmEmissive2.MF_TwinBalstArmEmissive2"'),(StateId=FFAF4A8A44D880C430183881CF498E2F,Function=MaterialFunction'"/Engine/Functions/MaterialLayerFunctions/MatLayerBlend_Emissive.MatLayerBlend_Emissive"'),(StateId=A1D148B947A6EE97ED4F4EB1DEEA0A73,Function=MaterialFunction'"/Game/ParagonTwinblast/Characters/Global/MaterialLayers/Synthetics/ML_PulsingTronTube.ML_PulsingTronTube"')),ParameterCollectionInfos=((StateId=CA21AD3445D19494111EFCBE1DDAEA79,ParameterCollection=MaterialParameterCollection'"/Game/ParagonTwinblast/Characters/Global/ParameterCollections/OrionGlobalGameplayCollection.OrionGlobalGameplayCollection"')),QualityLevelsUsed=(True,False,False,False))
+   ReferencedTextureGuids(0)=0853D325428DA20AA0CDAC91A2F34D39
+   ReferencedTextureGuids(1)=D9BCFC984F625FEE073CE7AED3C70F4C
+   ReferencedTextureGuids(2)=199CA59D44472F690A252C8C596AAB86
+   ReferencedTextureGuids(3)=CF5F63B544386588B8613E9C8DA4188A
+   ReferencedTextureGuids(4)=FED9DD4248F22E4EB344938F9014E6B7
+   ReferencedTextureGuids(5)=F648B2DC4F500EBF92DB6C9B1DAE2CAA
+   ReferencedTextureGuids(6)=844CE3204B82DC0CDC6A5CAAAD009C7E
+   ReferencedTextureGuids(7)=4243B3644A3ACBD6A00932ACD9EE2112
+   ReferencedTextureGuids(8)=694A24414A01664397C3D389C24F2960
+   ReferencedTextureGuids(9)=048BB152446E7A3CC7304784BA27ACE9
+   ReferencedTextureGuids(10)=CC1C29E44B45E016F0B86F822B3EF02E
+   ReferencedTextureGuids(11)=CAAAAE0B4A8F79E69124B895EFEF56FA
+   ReferencedTextureGuids(12)=8080ACC54E0EB3E322300A9C0E747794
+   ReferencedTextureGuids(13)=A261CA294D71483110A61E91EFE8A140
+   ReferencedTextureGuids(14)=4AD828934A8B7C03E635E3AF5E390DB8
+   ReferencedTextureGuids(15)=D4ABB87D43E4BA424281C691890DD956
+   ThumbnailInfo=SceneThumbnailInfoWithPrimitive'"SceneThumbnailInfoWithPrimitive_0"'
+   LightingGuid=9E9D3BD24FE275BB39FF478E4A3AC3EE
+End Object

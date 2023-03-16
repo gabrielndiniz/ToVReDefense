@@ -21,11 +21,23 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+
 public:	
 
 	virtual void Tick(float DeltaTime) override;
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+	
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	USceneComponent* CameraAttachment;
+
+	UFUNCTION(BlueprintPure, Category = "Config")
+	class UCameraComponent* GetCameraComponent() const { return Camera; }
+
+	
+	UFUNCTION(BlueprintPure, Category = "Config")
+	FTransform GetCameraTransform() const;
 
 private:
 	UFUNCTION()
@@ -120,6 +132,9 @@ private:
 
 	UPROPERTY()
 	class UCapsuleComponent* Capsule;
+	
+	UPROPERTY()
+	class UCameraComponent* Camera;
 
 	
 	UPROPERTY()

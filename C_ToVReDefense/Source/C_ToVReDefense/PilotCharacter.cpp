@@ -18,26 +18,33 @@ APilotCharacter::APilotCharacter()
 	VRRoot->SetupAttachment(GetRootComponent());
 
 	Capsule = GetCapsuleComponent();
-	CurrentCameraHeight = Capsule->GetScaledCapsuleHalfHeight();
-	CalculatePlayerHeight();
 	
+	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	Camera->SetupAttachment(CameraAttachment);
 }
-
-// Called when the game starts or when spawned
 void APilotCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	/*if (UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled())
-	{
-		UHeadMountedDisplayFunctionLibrary::SetTrackingOrigin(EHMDTrackingOrigin::Floor);
-	}*/
-
 	bDoesHaveHands = SetupHandControllers();
 
 	PlayerController = Cast<APlayerController>(GetController());
-}
 
+	// Set the tracking origin to the floor if using VR
+	if (UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled())
+	{
+		UHeadMountedDisplayFunctionLibrary::SetTrackingOrigin(EHMDTrackingOrigin::Floor);
+	}
+
+	// Calculate the player's height and adjust the capsule and camera accordingly
+	CurrentCameraHeight = Capsule->GetScaledCapsuleHalfHeight();
+	FVector ActorLocation = GetActorLocation();
+	FVector EyeLevelOffsetVector = FVector(0.f, 0.f, CurrentCameraHeight);
+	SetActorLocation(ActorLocation + EyeLevelOffsetVector);
+
+	CalculatePlayerHeight();
+
+}
 void APilotCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -119,10 +126,13 @@ void APilotCharacter::CalculatePlayerHeight()
 	if (Capsule)
 	{
 		FVector ViewLocation = GetPawnViewLocation();
-		float EyeHeight  = ViewLocation.Z - GetActorLocation().Z;
+		float EyeHeight = ViewLocation.Z - GetActorLocation().Z;
 		float CameraDistance = Capsule->GetScaledCapsuleRadius() * 2.0f; // assuming the camera is above the center of the capsule
-		float FOVInRadians = 2.0f * FMath::Atan(EyeHeight  / CameraDistance);
+		float FOVInRadians = 2.0f * FMath::Atan(EyeHeight / CameraDistance);
 		//Camera->SetFieldOfView(FMath::RadiansToDegrees(FOVInRadians));
+        
+		// Set capsule height to player's height
+		Capsule->SetCapsuleHalfHeight(EyeHeight);
 	}
 	else
 	{
@@ -131,6 +141,11 @@ void APilotCharacter::CalculatePlayerHeight()
 }
 
 
+FTransform APilotCharacter::GetCameraTransform() const
+{
+	return Camera->GetRelativeTransform();
+}
+
 bool APilotCharacter::SetupHandControllers()
 {
 	if (RightHandControllerClass)
@@ -138,7 +153,7 @@ bool APilotCharacter::SetupHandControllers()
 		RightController = GetWorld()->SpawnActor<AHandController>(RightHandControllerClass, FVector::ZeroVector, FRotator::ZeroRotator);
 		if (RightController)
 		{
-			RightController->AttachToComponent(VRRoot, FAttachmentTransformRules::KeepRelativeTransform);
+			RightController->AttachToComponent(CameraAttachment, FAttachmentTransformRules::KeepRelativeTransform);
 			RightController->SetHand(EControllerHand::Right, RightHandTransform);
 			RightController->SetOwner(this);
 		}
@@ -159,7 +174,7 @@ bool APilotCharacter::SetupHandControllers()
 		LeftController = GetWorld()->SpawnActor<AHandController>(LeftHandControllerClass, FVector::ZeroVector, FRotator::ZeroRotator);
 		if (LeftController)
 		{
-			LeftController->AttachToComponent(VRRoot, FAttachmentTransformRules::KeepRelativeTransform);
+			LeftController->AttachToComponent(CameraAttachment, FAttachmentTransformRules::KeepRelativeTransform);
 			LeftController->SetHand(EControllerHand::Left, LeftHandTransform);
 			LeftController->SetOwner(this);
 		}

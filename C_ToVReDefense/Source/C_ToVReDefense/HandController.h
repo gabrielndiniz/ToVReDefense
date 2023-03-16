@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "HandController.generated.h"
 
+
 UENUM(BlueprintType)
 enum class HandToUse : uint8
 {
@@ -14,6 +15,7 @@ enum class HandToUse : uint8
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHandGripEvent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSetHandEvent);
 
 UCLASS()
 class C_TOVREDEFENSE_API AHandController : public AActor
@@ -73,10 +75,6 @@ public:
 	void HandGripAxis(float AxisValue);
 
 	
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	USkeletalMeshComponent* HandMeshComponent;
-
 	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
 	void SetGripAnimation(bool bNewGripAnim) { bGripAnim = bNewGripAnim; }
 
@@ -96,12 +94,27 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Hand Animations")
 	bool GetThumbsAnimation() const { return bThumbsAnim; }
+	
+
+	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
+	void SetThumbsPointAnimation(bool bNewThumbsPointAnim) { bThumbsPointAnim = bNewThumbsPointAnim; }
+
+	UFUNCTION(BlueprintPure, Category = "Hand Animations")
+	bool GetThumbsPointAnimation() const { return bThumbsPointAnim; }
+
+	UFUNCTION(BlueprintPure, Category = "Config")
+	class UMotionControllerComponent* GetMotionController() const { return MotionController; }
+
+	UFUNCTION(BlueprintPure, Category = "Config")
+	USkeletalMeshComponent* GetHandMeshComponent() const { return HandMeshComponent; }
 
 	UPROPERTY(BlueprintAssignable, Category = "Hand Animations")
 	FHandGripEvent OnHandGripEvent;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	class UMotionControllerComponent* MotionController;
+	UPROPERTY(BlueprintAssignable, Category = "Config")
+	FSetHandEvent OnSetHandEvent;
+
+	
 	
 	//Status	
 	UFUNCTION(BlueprintPure, Category = "Config")
@@ -112,6 +125,9 @@ private:
 
 	UPROPERTY()
 	EControllerHand ThisControllerHand;
+	
+	UPROPERTY(VisibleAnywhere)
+	USkeletalMeshComponent* HandMeshComponent;
 
 	UPROPERTY()
 	bool bIsGrabbing = false;
@@ -121,6 +137,17 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Hand Animations")
 	USkeletalMesh* LeftHandMesh;
+
+	
+
+	UPROPERTY(EditDefaultsOnly, Category = "Hand Animations")
+	UMaterialInterface* RightHandMaterial;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Hand Animations")
+	UMaterialInterface* LeftHandMaterial;
+	
+	UPROPERTY(VisibleAnywhere)
+	class UMotionControllerComponent* MotionController;
 	
 
 	UPROPERTY(VisibleAnywhere)
@@ -135,6 +162,7 @@ private:
 	bool bGripAnim = false;
 	bool bPointAnim = false;	
 	bool bThumbsAnim = false;
+	bool bThumbsPointAnim = false;
 	
 	
 	void PlayHapticEffect();
