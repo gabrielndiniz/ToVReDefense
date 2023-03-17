@@ -101,6 +101,27 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Hand Animations")
 	bool GetThumbsPointAnimation() const { return bThumbsPointAnim; }
+	
+
+	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
+	void SetSilverKnifeHoldAnimation(bool bNewSilverKnifeHoldAnim) { bSilverKnifeHoldAnim = bNewSilverKnifeHoldAnim; }
+
+	UFUNCTION(BlueprintPure, Category = "Hand Animations")
+	bool GetSilverKnifeHoldAnimation() const { return bSilverKnifeHoldAnim; }
+	
+
+	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
+	void SetSciFiPistolHoldAnim(bool bNewSciFiPistolHoldAnim) { bSciFiPistolHoldAnim = bNewSciFiPistolHoldAnim; }
+
+	UFUNCTION(BlueprintPure, Category = "Hand Animations")
+	bool GetSciFiPistolHoldAnim() const { return bSciFiPistolHoldAnim; }
+	
+
+	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
+	void SetSciFiPistolShootAnim(bool bNewSciFiPistolShootAnim) { bSciFiPistolShootAnim = bNewSciFiPistolShootAnim; }
+
+	UFUNCTION(BlueprintPure, Category = "Hand Animations")
+	bool GetSciFiPistolShootAnim() const { return bSciFiPistolShootAnim; }
 
 	UFUNCTION(BlueprintPure, Category = "Config")
 	class UMotionControllerComponent* GetMotionController() const { return MotionController; }
@@ -163,6 +184,9 @@ private:
 	bool bPointAnim = false;	
 	bool bThumbsAnim = false;
 	bool bThumbsPointAnim = false;
+	bool bSilverKnifeHoldAnim = false;
+	bool bSciFiPistolHoldAnim = false;
+	bool bSciFiPistolShootAnim = false;
 	
 	
 	void PlayHapticEffect();

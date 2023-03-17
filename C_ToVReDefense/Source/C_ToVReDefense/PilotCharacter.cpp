@@ -14,13 +14,11 @@ APilotCharacter::APilotCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Capsule = GetCapsuleComponent();
+
 	VRRoot = CreateDefaultSubobject<USceneComponent>(TEXT("VRRoot"));
 	VRRoot->SetupAttachment(GetRootComponent());
-
-	Capsule = GetCapsuleComponent();
 	
-	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	Camera->SetupAttachment(CameraAttachment);
 }
 void APilotCharacter::BeginPlay()
 {
@@ -121,6 +119,11 @@ void APilotCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
+float APilotCharacter::GetVRCapsuleHalfHeight()
+{
+	return Capsule->GetScaledCapsuleHalfHeight();
+}
+
 void APilotCharacter::CalculatePlayerHeight()
 {
 	if (Capsule)
@@ -133,17 +136,12 @@ void APilotCharacter::CalculatePlayerHeight()
         
 		// Set capsule height to player's height
 		Capsule->SetCapsuleHalfHeight(EyeHeight);
+		VRRoot->SetRelativeLocation(FVector(0,0,-EyeHeight));
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Capsule component not found!"));
 	}
-}
-
-
-FTransform APilotCharacter::GetCameraTransform() const
-{
-	return Camera->GetRelativeTransform();
 }
 
 bool APilotCharacter::SetupHandControllers()
@@ -153,7 +151,7 @@ bool APilotCharacter::SetupHandControllers()
 		RightController = GetWorld()->SpawnActor<AHandController>(RightHandControllerClass, FVector::ZeroVector, FRotator::ZeroRotator);
 		if (RightController)
 		{
-			RightController->AttachToComponent(CameraAttachment, FAttachmentTransformRules::KeepRelativeTransform);
+			RightController->AttachToComponent(VRRoot, FAttachmentTransformRules::KeepRelativeTransform);
 			RightController->SetHand(EControllerHand::Right, RightHandTransform);
 			RightController->SetOwner(this);
 		}
@@ -174,7 +172,7 @@ bool APilotCharacter::SetupHandControllers()
 		LeftController = GetWorld()->SpawnActor<AHandController>(LeftHandControllerClass, FVector::ZeroVector, FRotator::ZeroRotator);
 		if (LeftController)
 		{
-			LeftController->AttachToComponent(CameraAttachment, FAttachmentTransformRules::KeepRelativeTransform);
+			LeftController->AttachToComponent(VRRoot, FAttachmentTransformRules::KeepRelativeTransform);
 			LeftController->SetHand(EControllerHand::Left, LeftHandTransform);
 			LeftController->SetOwner(this);
 		}

@@ -15,7 +15,6 @@ class C_TOVREDEFENSE_API APilotCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	APilotCharacter();
-	void CalculatePlayerHeight();
 
 protected:
 	// Called when the game starts or when spawned
@@ -27,18 +26,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	
-	
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-	USceneComponent* CameraAttachment;
 
-	UFUNCTION(BlueprintPure, Category = "Config")
-	class UCameraComponent* GetCameraComponent() const { return Camera; }
-
+	void CalculatePlayerHeight();
 	
 	UFUNCTION(BlueprintPure, Category = "Config")
-	FTransform GetCameraTransform() const;
-
+	float GetVRCapsuleHalfHeight(); 
+	
 private:
 	UFUNCTION()
 	bool SetupHandControllers();
@@ -121,20 +114,18 @@ private:
 
 	//Components
 
+	UPROPERTY(VisibleAnywhere)
+	class USceneComponent* VRRoot;
+	
 	UPROPERTY()
 	class AHandController* LeftController;
 	
 	UPROPERTY()
 	class AHandController* RightController;
 
-	UPROPERTY()
-	class USceneComponent* VRRoot;
 
 	UPROPERTY()
 	class UCapsuleComponent* Capsule;
-	
-	UPROPERTY()
-	class UCameraComponent* Camera;
 
 	
 	UPROPERTY()

@@ -76,7 +76,13 @@ void AHandController::HandMenuButtonPressed()
 
 void AHandController::HandTriggerPressed()
 {
-	bPointAnim = true;
+	bPointAnim = false;
+	bGripAnim = true;
+
+	if (bSciFiPistolHoldAnim)
+	{
+		bSciFiPistolShootAnim = true;
+	}
 }
 
 void AHandController::HandGripPressed()
@@ -100,13 +106,17 @@ void AHandController::HandMenuButtonReleased()
 
 void AHandController::HandTriggerReleased()
 {
-	bPointAnim = false;
+	bPointAnim = true;
+	bSciFiPistolShootAnim = false;
 }
 
 void AHandController::HandGripReleased()
 {
 	bGripAnim = false;
 	bThumbsPointAnim = false;
+	bSilverKnifeHoldAnim = false;
+	bSciFiPistolHoldAnim = false;
+	bSciFiPistolShootAnim = false;
 
 	OnHandGripEvent.Broadcast();
 }
@@ -158,7 +168,7 @@ void AHandController::HandTriggerAxis(float AxisValue)
 
 void AHandController::HandGripAxis(float AxisValue)
 {
-    if (FMath::Abs(AxisValue) >= 0.3f)
+    /*if (FMath::Abs(AxisValue) >= 0.3f && FMath::Abs(AxisValue) >= 0.7f)
     {
     	
     	bThumbsPointAnim = true;
@@ -168,13 +178,20 @@ void AHandController::HandGripAxis(float AxisValue)
     	
 		bGripAnim = true;
 		bThumbsPointAnim = false;
+		
+		OnHandGripEvent.Broadcast();
     }
 	if (FMath::Abs(AxisValue) < 0.3f)
 	{
     	
 		bGripAnim = false;
 		bThumbsPointAnim = false;
-	}
+		bSilverKnifeHoldAnim = false;
+		bSciFiPistolHoldAnim = false;
+		bSciFiPistolShootAnim = false;
+		
+		OnHandGripEvent.Broadcast();
+	}*/
 }
 
 
