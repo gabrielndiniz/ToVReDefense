@@ -22,7 +22,7 @@ void AHandController::SetHand(EControllerHand ControllerHand, FTransform HandTra
 {
 	ThisControllerHand = ControllerHand;
 
-	if (BIsRightHand())
+	if (IsRightHand())
 	{
 		if (RightHandMesh)
 		{
@@ -32,6 +32,7 @@ void AHandController::SetHand(EControllerHand ControllerHand, FTransform HandTra
 			{
 				HandMeshComponent->SetMaterial(0, RightHandMaterial);
 			}
+			HandMeshComponent->SetCollisionResponseToAllChannels(ECR_Ignore);
 		}
 		ThisHand = HandToUse::RightHand;
 	}
@@ -45,6 +46,7 @@ void AHandController::SetHand(EControllerHand ControllerHand, FTransform HandTra
 			{
 				HandMeshComponent->SetMaterial(0, LeftHandMaterial);
 			}
+			HandMeshComponent->SetCollisionResponseToAllChannels(ECR_Ignore);
 		}
 		else
 		{
@@ -76,18 +78,12 @@ void AHandController::HandMenuButtonPressed()
 
 void AHandController::HandTriggerPressed()
 {
-	bPointAnim = false;
-	bGripAnim = true;
-
-	if (bSciFiPistolHoldAnim)
-	{
-		bSciFiPistolShootAnim = true;
-	}
+	bIndex = true;
 }
 
 void AHandController::HandGripPressed()
 {
-	bGripAnim = true;
+	bGrip = true;
 
 	OnHandGripEvent.Broadcast();
 }
@@ -106,96 +102,77 @@ void AHandController::HandMenuButtonReleased()
 
 void AHandController::HandTriggerReleased()
 {
-	bPointAnim = true;
-	bSciFiPistolShootAnim = false;
+	bIndex = false;
 }
 
 void AHandController::HandGripReleased()
 {
-	bGripAnim = false;
-	bThumbsPointAnim = false;
-	bSilverKnifeHoldAnim = false;
-	bSciFiPistolHoldAnim = false;
-	bSciFiPistolShootAnim = false;
+	bGrip = false;
+	bHold = false;
 
 	OnHandGripEvent.Broadcast();
 }
 
 void AHandController::ThumbAnimPressed()
 {
-	bThumbsAnim = true;
+	bThumbs = true;
 }
 
 void AHandController::ThumbAnimReleased()
 {
-	bThumbsAnim = false;
+	bThumbs = false;
 }
 
 void AHandController::HandThumbstickY(float AxisValue)
 {
-    if (FMath::Abs(AxisValue) >= 0.5f)
-    {
-    }
 }
 
 void AHandController::HandThumbstickX(float AxisValue)
 {
-    if (FMath::Abs(AxisValue) >= 0.5f)
-    {
-    }
 }
 
 void AHandController::HandTouchpadY(float AxisValue)
 {
-    if (FMath::Abs(AxisValue) >= 0.5f)
-    {
-    }
 }
 
 void AHandController::HandTouchpadX(float AxisValue)
 {
-    if (FMath::Abs(AxisValue) >= 0.5f)
+    if (AxisValue >= 0.5f)
     {
     }
 }
 
 void AHandController::HandTriggerAxis(float AxisValue)
 {
-    if (FMath::Abs(AxisValue) >= 0.5f)
+	TriggerAxis = AxisValue;
+    if (AxisValue >= 0.9f)
     {
+    	bIndex = true;
     }
 }
 
 void AHandController::HandGripAxis(float AxisValue)
 {
-    /*if (FMath::Abs(AxisValue) >= 0.3f && FMath::Abs(AxisValue) >= 0.7f)
+		GripAxis = AxisValue;
+	if (AxisValue >= 0.9f)
     {
-    	
-    	bThumbsPointAnim = true;
-    }
-	if (FMath::Abs(AxisValue) >= 0.7f)
-    {
-    	
-		bGripAnim = true;
-		bThumbsPointAnim = false;
+		bGrip = true;
 		
 		OnHandGripEvent.Broadcast();
+		return;
     }
-	if (FMath::Abs(AxisValue) < 0.3f)
+	if (AxisValue < 0.2 && AxisValue > 0.1)
 	{
-    	
-		bGripAnim = false;
-		bThumbsPointAnim = false;
-		bSilverKnifeHoldAnim = false;
-		bSciFiPistolHoldAnim = false;
-		bSciFiPistolShootAnim = false;
+		bGrip = false;
 		
 		OnHandGripEvent.Broadcast();
-	}*/
+		return;
+	}
+	bGrip = false;
 }
 
 
-bool AHandController::BIsRightHand()
+bool AHandController::IsRightHand() const
 {
 	if (ThisControllerHand == EControllerHand::Right)
 	{

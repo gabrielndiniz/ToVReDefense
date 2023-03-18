@@ -76,52 +76,37 @@ public:
 
 	
 	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
-	void SetGripAnimation(bool bNewGripAnim) { bGripAnim = bNewGripAnim; }
+	void SetGrip(bool bNewGripAnim) { bGrip = bNewGripAnim; }
 
 	UFUNCTION(BlueprintPure, Category = "Hand Animations")
-	bool GetGripAnimation() const { return bGripAnim; }
+	bool GetGrip() const { return bGrip; }
 	
 
 	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
-	void SetPointAnimation(bool bNewPointAnim) { bPointAnim = bNewPointAnim; }
+	void SetIndex(bool bNewPointAnim) { bIndex = bNewPointAnim; }
 
 	UFUNCTION(BlueprintPure, Category = "Hand Animations")
-	bool GetPointAnimation() const { return bPointAnim; }
+	bool GetIndex() const { return bIndex; }
 	
 
 	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
-	void SetThumbsAnimation(bool bNewThumbsAnim) { bThumbsAnim = bNewThumbsAnim; }
+	void SetThumbs(bool bNewThumbsAnim) { bThumbs = bNewThumbsAnim; }
 
 	UFUNCTION(BlueprintPure, Category = "Hand Animations")
-	bool GetThumbsAnimation() const { return bThumbsAnim; }
+	bool GetThumbs() const { return bThumbs; }
 	
 
 	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
-	void SetThumbsPointAnimation(bool bNewThumbsPointAnim) { bThumbsPointAnim = bNewThumbsPointAnim; }
+	void SetHold(bool bNewThumbsPointAnim) { bHold = bNewThumbsPointAnim; }
 
 	UFUNCTION(BlueprintPure, Category = "Hand Animations")
-	bool GetThumbsPointAnimation() const { return bThumbsPointAnim; }
+	bool GetHold() const { return bHold; }
 	
-
-	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
-	void SetSilverKnifeHoldAnimation(bool bNewSilverKnifeHoldAnim) { bSilverKnifeHoldAnim = bNewSilverKnifeHoldAnim; }
-
 	UFUNCTION(BlueprintPure, Category = "Hand Animations")
-	bool GetSilverKnifeHoldAnimation() const { return bSilverKnifeHoldAnim; }
+	float GetGripAxis() const { return GripAxis; }
 	
-
-	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
-	void SetSciFiPistolHoldAnim(bool bNewSciFiPistolHoldAnim) { bSciFiPistolHoldAnim = bNewSciFiPistolHoldAnim; }
-
 	UFUNCTION(BlueprintPure, Category = "Hand Animations")
-	bool GetSciFiPistolHoldAnim() const { return bSciFiPistolHoldAnim; }
-	
-
-	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
-	void SetSciFiPistolShootAnim(bool bNewSciFiPistolShootAnim) { bSciFiPistolShootAnim = bNewSciFiPistolShootAnim; }
-
-	UFUNCTION(BlueprintPure, Category = "Hand Animations")
-	bool GetSciFiPistolShootAnim() const { return bSciFiPistolShootAnim; }
+	float GetTriggerAxis() const { return TriggerAxis; }
 
 	UFUNCTION(BlueprintPure, Category = "Config")
 	class UMotionControllerComponent* GetMotionController() const { return MotionController; }
@@ -139,7 +124,7 @@ public:
 	
 	//Status	
 	UFUNCTION(BlueprintPure, Category = "Config")
-	bool BIsRightHand();
+	bool IsRightHand() const;
 	
 private:
 	//Components
@@ -180,13 +165,12 @@ private:
 
 
 	//Status
-	bool bGripAnim = false;
-	bool bPointAnim = false;	
-	bool bThumbsAnim = false;
-	bool bThumbsPointAnim = false;
-	bool bSilverKnifeHoldAnim = false;
-	bool bSciFiPistolHoldAnim = false;
-	bool bSciFiPistolShootAnim = false;
+	bool bGrip = false;
+	bool bIndex = false;	
+	bool bThumbs = false;
+	bool bHold = false;
+	float GripAxis = 0;
+	float TriggerAxis = 0;
 	
 	
 	void PlayHapticEffect();
