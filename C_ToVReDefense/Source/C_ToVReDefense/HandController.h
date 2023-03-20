@@ -120,6 +120,11 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Config")
 	FSetHandEvent OnSetHandEvent;
 
+	UFUNCTION(BlueprintCallable, Category = "Hand Animations")
+	void SetIsGrabbing(const bool bGrabbing, AActor* Grabbed);
+
+	UFUNCTION(BlueprintPure, Category = "Hand Animations")
+	bool GetIsGrabbing() const { return bIsGrabbing; }
 	
 	
 	//Status	
@@ -158,7 +163,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	AHandController* PairHandController;
-
+	
+	UPROPERTY(VisibleAnywhere)
+	class AGrabbable* GrabbedItem;
+	
 	UPROPERTY(VisibleAnywhere)
 	HandToUse ThisHand = HandToUse::RightHand;
 

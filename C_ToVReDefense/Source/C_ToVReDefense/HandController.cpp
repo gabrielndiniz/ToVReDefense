@@ -3,6 +3,7 @@
 
 #include "HandController.h"
 
+#include "Grabbable.h"
 #include "MotionControllerComponent.h"
 
 // Sets default values
@@ -149,6 +150,11 @@ void AHandController::HandTriggerAxis(float AxisValue)
     {
     	bIndex = true;
     }
+
+	if (GrabbedItem && bIsGrabbing)
+	{
+		GrabbedItem->SetTriggerAxisValue(AxisValue);
+	}
 }
 
 void AHandController::HandGripAxis(float AxisValue)
@@ -171,6 +177,16 @@ void AHandController::HandGripAxis(float AxisValue)
 	bGrip = false;
 }
 
+
+void AHandController::SetIsGrabbing(const bool bGrabbing, AActor* Grabbed)
+{
+	bIsGrabbing = bGrabbing;
+	GrabbedItem = Cast<AGrabbable>(Grabbed);
+	if (!GrabbedItem && bIsGrabbing)
+	{
+		UE_LOG(LogTemp, Error, TEXT("error z9A@: Item is not Grabbable"));
+	}
+}
 
 bool AHandController::IsRightHand() const
 {
