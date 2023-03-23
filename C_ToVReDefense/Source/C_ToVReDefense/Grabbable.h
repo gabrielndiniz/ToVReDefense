@@ -25,8 +25,6 @@ public:
 	UFUNCTION()
 	void SetTriggerAxisValue(float Axis) const;
 
-	UFUNCTION(BlueprintCallable, Category = "Config")
-	void SetMuzzleTransform(FTransform NewTransform);
 	
 private:
 	UPROPERTY()

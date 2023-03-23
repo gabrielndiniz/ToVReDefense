@@ -29,11 +29,7 @@ void AGrabbable::BeginPlay()
 	{
 		// Set the SkeletalMeshComponent 
 		SkeletalMeshComponent = Cast<USkeletalMeshComponent>(GetComponentByClass(USkeletalMeshComponent::StaticClass()));
-		if (SkeletalMeshComponent)
-		{
-			FireComponent->SetWeapon(SkeletalMeshComponent, MuzzleTransform);
-		}
-		else
+		if (!SkeletalMeshComponent)
 		{
 			UE_LOG(LogTemp, Error, TEXT("error z9A@: Skeletal Mesh Component not found"));
 		}
@@ -49,10 +45,6 @@ void AGrabbable::Tick(float DeltaSeconds)
 	
 }
 
-void AGrabbable::SetMuzzleTransform(FTransform NewTransform)
-{
-	MuzzleTransform = NewTransform;
-}
 
 void AGrabbable::SetTriggerAxisValue(float Axis) const
 {

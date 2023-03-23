@@ -18,11 +18,6 @@ public:
 	void Fire();
 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Firing")
-	float FiringRate;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Firing")
-	float DamagePerShot;
 
 
 protected:
@@ -35,28 +30,38 @@ public:
 	
 
 public:
-	
-	UFUNCTION()
-	void SetWeapon(USkeletalMeshComponent* NewSkeletalMeshComponent, FTransform NewMuzzleLocation);
 
 	
 	UFUNCTION()
-	void SetTriggerAxisValue(float NewTriggerAxisValue) {TriggerAxisValue = NewTriggerAxisValue;}
+	void SetTriggerAxisValue(float NewTriggerAxisValue) {TriggerAxisValue = NewTriggerAxisValue; }
 	
 	UFUNCTION(BlueprintPure, Category = "Firing")
 	float GetTriggerAxisValue() const {return TriggerAxisValue;}
 
+	UFUNCTION(BlueprintPure, Category="MyCategory")
+	FTransform GetMuzzleTransform() const{return MuzzleTransform;}
+
+
+
+	UFUNCTION(BlueprintPure, Category="MyCategory")
+	float GetCallbackTime() const	{return CallbackTime;}
+
+//need to take out USkeletalMeshComponent and stuff
 	UFUNCTION(BlueprintCallable, Category = "Firing")
-	void SetWeaponAmmo(TSubclassOf<class UParticleSystem> NewMuzzleFlash, class UAnimSequence* NewFiringAnimation,
-		TSubclassOf<class AProjectile> NewProjectileClasses, int32 NewAmmoSize, class USoundCue* NewFireSound);
+	void SetWeaponAndAmmo(TSubclassOf<UParticleSystem> NewMuzzleFlash, TSubclassOf<class AProjectile> NewProjectileClasses, int32 NewAmmoSize,
+	class USoundCue* NewFireSound, FTransform NewMuzzleLocation, float NewCallbackTime);
 	
 private:
+	
+	UPROPERTY()
+	float FiringRate;
 
+	UPROPERTY()
+	float DamagePerShot;
+	
 	UPROPERTY()
 	TSubclassOf<class UParticleSystem> MuzzleFlash;
 
-	UPROPERTY()
-	class UAnimSequence* FiringAnimation;
 
 	UPROPERTY()
 	TSubclassOf<class AProjectile> ProjectileClasses;
@@ -69,16 +74,16 @@ private:
 	
 	UPROPERTY()
 	TArray<class AProjectile*> Clip;
-	
-	UPROPERTY()
-	USkeletalMeshComponent* SkeletalMeshComponent;
-	
+		
 	UPROPERTY()
 	FTransform MuzzleTransform;
 
 	UPROPERTY()
-	float TriggerAxisValue;
-	
+	float TriggerAxisValue = 0;
+
+	UPROPERTY()
+	float CallbackTime = 0;
+		
 	bool bIsFiring;
 
 	int32 CurrentProjectileIndex;
