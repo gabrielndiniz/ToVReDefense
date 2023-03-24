@@ -14,12 +14,6 @@ public:
 	// Sets default values for this component's properties
 	UFireWeaponComponent();
 
-	//This will only fire if trigger axis is bigger than 0.9
-	void Fire();
-
-
-
-
 protected:
 
 	virtual void BeginPlay() override;
@@ -35,21 +29,39 @@ public:
 	UFUNCTION()
 	void SetTriggerAxisValue(float NewTriggerAxisValue) {TriggerAxisValue = NewTriggerAxisValue; }
 	
-	UFUNCTION(BlueprintPure, Category = "Firing")
+	UFUNCTION(BlueprintPure, Category = "Fire Weapon")
 	float GetTriggerAxisValue() const {return TriggerAxisValue;}
 
-	UFUNCTION(BlueprintPure, Category="MyCategory")
+	UFUNCTION(BlueprintPure, Category="Fire Weapon")
 	FTransform GetMuzzleTransform() const{return MuzzleTransform;}
 
+	UFUNCTION(BlueprintPure, Category="Fire Weapon")
+	bool GetIsFiring() const	{return bIsFiring;}
 
-
-	UFUNCTION(BlueprintPure, Category="MyCategory")
+	UFUNCTION(BlueprintPure, Category="Fire Weapon")
 	float GetCallbackTime() const	{return CallbackTime;}
+	
+	UFUNCTION(BlueprintCallable, Category="Fire Weapon")
+	void SetStartSliderTime(float InitialTime) {StartSliderTime = InitialTime;}
+	
+	UFUNCTION(BlueprintPure, Category="Fire Weapon")
+	float GetCallbackProgression();
+	
+	UFUNCTION(BlueprintCallable, Category = "Fire Weapon")
+	void SetCanFire(bool bNewCanFire) {bCanFire = bNewCanFire;}
+
+	UFUNCTION(BlueprintPure, Category = "Fire Weapon")
+	bool GetCanFire() const {return bCanFire;}
+
 
 //need to take out USkeletalMeshComponent and stuff
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 	void SetWeaponAndAmmo(TSubclassOf<UParticleSystem> NewMuzzleFlash, TSubclassOf<class AProjectile> NewProjectileClasses, int32 NewAmmoSize,
 	class USoundCue* NewFireSound, FTransform NewMuzzleLocation, float NewCallbackTime);
+	
+	
+	void Fire();
+
 	
 private:
 	
@@ -58,6 +70,9 @@ private:
 
 	UPROPERTY()
 	float DamagePerShot;
+	
+	UPROPERTY()
+	float StartSliderTime = -90000000;
 	
 	UPROPERTY()
 	TSubclassOf<class UParticleSystem> MuzzleFlash;
@@ -84,7 +99,9 @@ private:
 	UPROPERTY()
 	float CallbackTime = 0;
 		
-	bool bIsFiring;
+	bool bIsFiring = false;
+
+	bool bCanFire=true;
 
 	int32 CurrentProjectileIndex;
 
