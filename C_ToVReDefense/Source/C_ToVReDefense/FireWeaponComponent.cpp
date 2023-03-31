@@ -3,9 +3,10 @@
 
 #include "FireWeaponComponent.h"
 
-#include "Components/SkeletalMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Projectile.h"
+#include "Particles/ParticleSystem.h"
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values for this component's properties
 UFireWeaponComponent::UFireWeaponComponent()
@@ -19,7 +20,7 @@ void UFireWeaponComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
+	GetOwner()->RegisterAllComponents();
 }
 
 void UFireWeaponComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -31,6 +32,16 @@ void UFireWeaponComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 		Fire();
 	}
 	
+}
+
+FTransform UFireWeaponComponent::GetMuzzleTransform() const
+{
+	const USkeletalMeshComponent* MeshComponent = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
+	if (!ensureMsgf(MeshComponent, TEXT("error 3t/7: no SkeletalMeshComponent found on owner!")))
+	{
+		return FTransform::Identity;
+	}
+	return MeshComponent->GetSocketTransform(MuzzleSocket);;
 }
 
 float UFireWeaponComponent::GetCallbackProgression()
@@ -61,34 +72,28 @@ float UFireWeaponComponent::GetCallbackProgression()
 	return FMath::Clamp(Progression, 0.0f, 1.0f);
 }
 
-void UFireWeaponComponent::SetWeaponAndAmmo(TSubclassOf<UParticleSystem> NewMuzzleFlash, TSubclassOf<AProjectile> NewProjectileClasses, int32 NewAmmoSize,
-                                            USoundCue* NewFireSound, FTransform NewMuzzleLocation, float NewCallbackTime)
+void UFireWeaponComponent::SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSubclassOf<AProjectile> NewProjectileClasses, //int32 NewAmmoSize,
+                                            USoundBase* NewFireSound,  FName NewMuzzleSocket, float NewCallbackTime)
 {
 	MuzzleFlash = NewMuzzleFlash;
-	ProjectileClasses = NewProjectileClasses;
-	AmmoSize = NewAmmoSize;
+	ProjectileClass = NewProjectileClasses;
 	FireSound = NewFireSound;
-	CallbackTime = NewCallbackTime;
-	MuzzleTransform = NewMuzzleLocation;
-	
-	if (ProjectileClasses)
+	//if (NewAmmoSize)
+	//{
+	//	AmmoSize = NewAmmoSize;
+	//}
+	if (CallbackTime)
 	{
-		for (int i =0; i<AmmoSize; ++i)
-		{
-			AProjectile* NewProjectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClasses, FVector::ZeroVector, FRotator::ZeroRotator);
-			Clip.Add(NewProjectile);
-		}
+		CallbackTime = NewCallbackTime;
 	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("error 3t/7: ProjectileClasses not found"));
-	}
-	
+	MuzzleSocket = NewMuzzleSocket;
+			
 }
 
 
 void UFireWeaponComponent::Fire()
 {
+	GetCallbackProgression();
 	if (!bCanFire)
 	{
 		return;
@@ -102,5 +107,37 @@ void UFireWeaponComponent::Fire()
     
 	bIsFiring = true;
 
+
+	// Play FireSound
+
+	FVector SpawnLocation = GetMuzzleTransform().GetLocation();
+	FRotator SpawnRotation = GetMuzzleTransform().GetRotation().Rotator();
+
+	
+	UGameplayStatics::PlaySoundAtLocation(this, FireSound, SpawnLocation);
+
+	
+
+	// Spawn MuzzleFlash
+	if (MuzzleFlash)
+	{
+		UWorld* const World = GetWorld();
+		if (World)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(World,MuzzleFlash,SpawnLocation,SpawnRotation,FVector(1),true,EPSCPoolMethod::None,true);
+		
+		}
+	}
+
+
+	if (ProjectileClass)
+	{
+		
+		AProjectile* ProjectileToFire = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+			if (ProjectileToFire)
+			{
+				ProjectileToFire->SetOwner(GetOwner());
+			}
+	}
 
 }

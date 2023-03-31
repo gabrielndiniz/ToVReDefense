@@ -6,6 +6,20 @@
 #include "GameFramework/Actor.h"
 #include "Projectile.generated.h"
 
+/* to be implemented later
+UENUM(BlueprintType)
+enum class EProjectileType : uint8
+{
+	CloseCombat,
+	Slug,
+	Shotshell,
+	Explosive,
+	Laser,
+	Electric
+};
+*/
+
+
 UCLASS()
 class C_TOVREDEFENSE_API AProjectile : public AActor
 {
@@ -19,43 +33,66 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit);
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	void LaunchProjectile(float Speed);
 
+	UFUNCTION(BlueprintCallable, Category = "Config")
+	void SetProjectile(UStaticMeshComponent* NewCollisionMesh, class UProjectileMovementComponent* NewProjectileMovement, 
+						UParticleSystemComponent* NewLaunchBlast, UParticleSystemComponent* NewImpactBlast, 
+						class URadialForceComponent* NewExplosionForce, float NewDestroyDelay, float NewProjectileDamage,
+						float NewDamageRadius, float NewSpeed, float newExplosionIntensity);
 
+	//if I do not use spawn projectile
+	//void LaunchProjectile(FTransform InitialLocation);
 
+	
 private:
+//	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+//	EProjectileType ProjectileType;
 
+	
+	UPROPERTY()
 	class UProjectileMovementComponent* ProjectileMovement = nullptr;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UPROPERTY()
 	UStaticMeshComponent* CollisionMesh = nullptr;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UPROPERTY()
 	UParticleSystemComponent* LaunchBlast = nullptr;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UPROPERTY()
 	UParticleSystemComponent* ImpactBlast = nullptr;
 
-	UPROPERTY(EditAnywhere)
-	FVector ScaleOfProjectile = FVector(10.0, 10.0, 10.0);
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UPROPERTY()
 	class URadialForceComponent* ExplosionForce = nullptr;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	UPROPERTY()
 	float DestroyDelay = 5.f;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	UPROPERTY()
 	float ProjectileDamage = 20.f;
 
+	UPROPERTY()
+	float DamageRadius = 0.0f;
+
+	UPROPERTY()
+	float Speed = 5000.0f;
+	
+	UPROPERTY()
+	float ExplosionIntensity = 100.0f;
+
+	//UPROPERTY()
+	//FTransform StartingPoint = FTransform::Identity;
+	
 	UFUNCTION()
 	void OnTimerExpire();
 
+	UPROPERTY()
 	FTimerHandle TimerHandle;
+
 };

@@ -33,7 +33,7 @@ public:
 	float GetTriggerAxisValue() const {return TriggerAxisValue;}
 
 	UFUNCTION(BlueprintPure, Category="Fire Weapon")
-	FTransform GetMuzzleTransform() const{return MuzzleTransform;}
+	FTransform GetMuzzleTransform() const;
 
 	UFUNCTION(BlueprintPure, Category="Fire Weapon")
 	bool GetIsFiring() const	{return bIsFiring;}
@@ -56,12 +56,11 @@ public:
 
 //need to take out USkeletalMeshComponent and stuff
 	UFUNCTION(BlueprintCallable, Category = "Firing")
-	void SetWeaponAndAmmo(TSubclassOf<UParticleSystem> NewMuzzleFlash, TSubclassOf<class AProjectile> NewProjectileClasses, int32 NewAmmoSize,
-	class USoundCue* NewFireSound, FTransform NewMuzzleLocation, float NewCallbackTime);
+	void SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSubclassOf<class AProjectile> NewProjectileClasses, //int32 NewAmmoSize,
+	class USoundBase* NewFireSound, FName NewMuzzleSocket, float NewCallbackTime);
 	
 	
 	void Fire();
-
 	
 private:
 	
@@ -75,29 +74,26 @@ private:
 	float StartSliderTime = -90000000;
 	
 	UPROPERTY()
-	TSubclassOf<class UParticleSystem> MuzzleFlash;
+	UParticleSystem* MuzzleFlash;
 
 
 	UPROPERTY()
-	TSubclassOf<class AProjectile> ProjectileClasses;
+	TSubclassOf<class AProjectile> ProjectileClass;
 
-	UPROPERTY()
-	int32 AmmoSize;
+	//UPROPERTY()
+	//int32 AmmoSize = 1;
 	
 	UPROPERTY()
-	class USoundCue* FireSound;
-	
+	class USoundBase* FireSound;
+			
 	UPROPERTY()
-	TArray<class AProjectile*> Clip;
-		
-	UPROPERTY()
-	FTransform MuzzleTransform;
+	FName MuzzleSocket=TEXT("Muzzle");
 
 	UPROPERTY()
 	float TriggerAxisValue = 0;
 
 	UPROPERTY()
-	float CallbackTime = 0;
+	float CallbackTime = SMALL_NUMBER;
 		
 	bool bIsFiring = false;
 
