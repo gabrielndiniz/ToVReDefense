@@ -72,7 +72,10 @@ private:
 	class URadialForceComponent* ExplosionForce = nullptr;
 
 	UPROPERTY()
-	float DestroyDelay = 5.f;
+	float DestroyDelayOnHit = 5.f;
+	
+	UPROPERTY()
+	float DestroyDelayOnFire = 50.f;
 
 	UPROPERTY()
 	float ProjectileDamage = 20.f;
@@ -85,6 +88,9 @@ private:
 	
 	UPROPERTY()
 	float ExplosionIntensity = 100.0f;
+	
+	UPROPERTY()
+	bool bIsReady = true;
 
 	//UPROPERTY()
 	//FTransform StartingPoint = FTransform::Identity;

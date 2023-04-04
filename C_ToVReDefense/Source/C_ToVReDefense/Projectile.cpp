@@ -23,56 +23,61 @@ void AProjectile::BeginPlay()
 	CollisionMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 	
 
+	
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerExpire, DestroyDelayOnFire, false);
 }
 
 void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
 {
-
-	
-	UE_LOG(LogTemp, Warning, TEXT("Ready to destroy 0"));
-	LaunchBlast->Deactivate();
-	ImpactBlast->Activate();
-
-//	SetRootComponent(ImpactBlast);
-	if (DamageRadius > 0)
+	if (bIsReady)
 	{
-		TArray<AActor*> OverlappingActors;
-	
-		CollisionMesh->GetOverlappingActors(OverlappingActors);
+		LaunchBlast->Deactivate();
+		ImpactBlast->Activate();
 
-		for (AActor* OverlappingActor : OverlappingActors)
+		//	SetRootComponent(ImpactBlast);
+		if (DamageRadius > 0)
 		{
-			UHealthComponent* HealthComponent = OverlappingActor->FindComponentByClass<UHealthComponent>();
-			if (HealthComponent)
+			TArray<AActor*> OverlappingActors;
+	
+			CollisionMesh->GetOverlappingActors(OverlappingActors);
+
+			for (AActor* OverlappingActor : OverlappingActors)
 			{
-				float DistanceFromImpact = FVector::Distance(OverlappingActor->GetActorLocation(), Hit.ImpactPoint);
-				float Damage = ProjectileDamage * FMath::Clamp(1.f - DistanceFromImpact / DamageRadius, 0.f, 1.f);
-				HealthComponent->TakeDamage(Damage);
+				UHealthComponent* HealthComponent = OverlappingActor->FindComponentByClass<UHealthComponent>();
+				if (HealthComponent)
+				{
+					float DistanceFromImpact = FVector::Distance(OverlappingActor->GetActorLocation(), Hit.ImpactPoint);
+					float Damage = ProjectileDamage * FMath::Clamp(1.f - DistanceFromImpact / DamageRadius, 0.f, 1.f);
+					HealthComponent->TakeDamage(Damage);
+				}
+			}
+		
+		}
+		else
+		{
+			UHealthComponent* HealthComponent = OtherActor->FindComponentByClass<UHealthComponent>();
+
+			if (HealthComponent)
+
+			{
+
+				HealthComponent->TakeDamage(ProjectileDamage);
+
+				UE_LOG(LogTemp, Warning, TEXT("The ammo found healthcomponent %s."), *HealthComponent->GetFName().ToString());
+
+			}
+			else
+			{
+			
+				UE_LOG(LogTemp, Warning, TEXT("The ammo do not found healthcomponent."));
 			}
 		}
-		
-		UE_LOG(LogTemp, Warning, TEXT("Ready to destroy "));
-	}
-	else
-	{
-		UHealthComponent* HealthComponent = OtherActor->FindComponentByClass<UHealthComponent>();
-
-		if (HealthComponent)
-
-		{
-
-			HealthComponent->TakeDamage(ProjectileDamage);
-
-		}
-		
-		UE_LOG(LogTemp, Warning, TEXT("Ready to destroy 1"));
-	}
-	ExplosionForce->Radius = ExplosionIntensity;
-	ExplosionForce->FireImpulse();
+		ExplosionForce->Radius = ExplosionIntensity;
+		ExplosionForce->FireImpulse();
 	
-	UE_LOG(LogTemp, Warning, TEXT("Ready to destroy 2"));
-	Destroy();
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerExpire, DestroyDelay, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerExpire, DestroyDelayOnHit, false);
+		bIsReady = false;
+	}
 }
 // Called every frame
 void AProjectile::Tick(float DeltaTime)
@@ -91,7 +96,7 @@ void AProjectile::SetProjectile(UStaticMeshComponent* NewCollisionMesh,
 	LaunchBlast = NewLaunchBlast;
 	ImpactBlast = NewImpactBlast;
 	ExplosionForce = NewExplosionForce;
-	DestroyDelay = NewDestroyDelay;
+	DestroyDelayOnHit = NewDestroyDelay;
 	ProjectileDamage = NewProjectileDamage;
 	DamageRadius = NewDamageRadius;
 	Speed = NewSpeed;
