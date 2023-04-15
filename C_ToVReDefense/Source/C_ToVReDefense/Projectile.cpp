@@ -63,7 +63,6 @@ void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor,
 
 				HealthComponent->TakeDamage(ProjectileDamage);
 
-				UE_LOG(LogTemp, Warning, TEXT("The ammo found healthcomponent %s."), *HealthComponent->GetFName().ToString());
 
 			}
 			else
@@ -109,6 +108,5 @@ void AProjectile::SetProjectile(UStaticMeshComponent* NewCollisionMesh,
 
 void AProjectile::OnTimerExpire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Ready to destroy"));
 	Destroy();
 }

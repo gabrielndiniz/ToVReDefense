@@ -3,6 +3,9 @@
 
 #include "EnemyPawn.h"
 
+#include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
+
 // Sets default values
 AEnemyPawn::AEnemyPawn()
 {
@@ -25,10 +28,35 @@ void AEnemyPawn::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
-void AEnemyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AEnemyPawn::OnDeath(UParticleSystem* DeathAnim)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	if (GetController())
+	{
+		GetController()->UnPossess();
+	}
+	TArray<UPrimitiveComponent*> Components;
+	GetComponents<UPrimitiveComponent>(Components);
+	for (auto Component : Components)
+	{
+		if (USkeletalMeshComponent* SkeletalMesh = Cast<USkeletalMeshComponent>(Component))
+		{
+			SkeletalMesh->SetSimulatePhysics(true);
+			SkeletalMesh->BreakConstraint(FVector::ZeroVector, FVector::ZeroVector,"");
+			SkeletalMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+		}
+		else if (UStaticMeshComponent* StaticMesh = Cast<UStaticMeshComponent>(Component))
+		{
+			StaticMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+		}
+	}
 
+	if (DeathAnim)
+	{
+		UWorld* const World = GetWorld();
+		if (World)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(World,DeathAnim,FVector::ZeroVector,FRotator::ZeroRotator,FVector(1),true,EPSCPoolMethod::None,true);
+		
+		}
+	}
 }
-
