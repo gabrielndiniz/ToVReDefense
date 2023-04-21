@@ -6,10 +6,12 @@
 #include "GameFramework/Actor.h"
 #include "Grabbable.generated.h"
 
+
 UCLASS()
 class C_TOVREDEFENSE_API AGrabbable : public AActor
 {
 	GENERATED_BODY()
+	
 	
 public:	
 	// Sets default values for this actor's properties
@@ -23,20 +25,36 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	UFUNCTION()
-	void SetTriggerAxisValue(float Axis) const;
+	void SetTriggerAxisValue(float Axis);
 
+	UFUNCTION(BlueprintPure, Category = "Fire Weapon")
+	float GetTriggerAxisValue() const {return TriggerAxisValue;}
+	
+	UFUNCTION(BlueprintPure, Category = "Fire Weapon")
+	class UFireWeaponComponent* GetFireComponent() const {return FireComponent;}
+	
+	
+	UFUNCTION()
+	void SetIsBeingGrabbed(bool bGrabbed);
 	
 private:
+	
+	
 	UPROPERTY()
-	class UFireWeaponComponent* FireComponent;
-
-	UPROPERTY()
-	USkeletalMeshComponent* SkeletalMeshComponent;
-
+	UFireWeaponComponent* FireComponent;
 	
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* GrabbableRootComponent;
 	
 	UPROPERTY(VisibleAnywhere)
 	FTransform MuzzleTransform;
+	
+	UPROPERTY()
+	float TriggerAxisValue;
+	
+
+	UPROPERTY()
+	bool bIsBeingGrabbed = false;
+	
 };
+

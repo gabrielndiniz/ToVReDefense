@@ -4,6 +4,10 @@
 #include "Grabbable.h"
 
 #include "FireWeaponComponent.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/Character.h"
+#include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 // Sets default values
 AGrabbable::AGrabbable()
@@ -13,6 +17,8 @@ AGrabbable::AGrabbable()
 	
 	GrabbableRootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SetRootComponent(GrabbableRootComponent);
+
+
 
 }
 
@@ -25,32 +31,29 @@ void AGrabbable::BeginPlay()
 		return;
 	}
 	FireComponent = FindComponentByClass<UFireWeaponComponent>();
-	if (FireComponent)
-	{
-		// Set the SkeletalMeshComponent 
-		SkeletalMeshComponent = Cast<USkeletalMeshComponent>(GetComponentByClass(USkeletalMeshComponent::StaticClass()));
-		if (!SkeletalMeshComponent)
-		{
-			UE_LOG(LogTemp, Error, TEXT("error z9A@: Skeletal Mesh Component not found"));
-		}
-	}
 
-
+	
 }
 
 void AGrabbable::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	
 }
 
 
-void AGrabbable::SetTriggerAxisValue(float Axis) const
+void AGrabbable::SetTriggerAxisValue(float Axis) 
 {
+	TriggerAxisValue = Axis;
 	if (FireComponent)
 	{
 		FireComponent->SetTriggerAxisValue(Axis);
 	}
+}
+
+
+void AGrabbable::SetIsBeingGrabbed(bool bGrabbed) 
+{
+	bIsBeingGrabbed = bGrabbed;
 }
 

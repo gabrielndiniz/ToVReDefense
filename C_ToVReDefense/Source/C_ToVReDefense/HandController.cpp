@@ -181,10 +181,18 @@ void AHandController::HandGripAxis(float AxisValue)
 void AHandController::SetIsGrabbing(const bool bGrabbing, AActor* Grabbed)
 {
 	bIsGrabbing = bGrabbing;
+	if (GrabbedItem && !bIsGrabbing)
+	{
+		GrabbedItem->SetIsBeingGrabbed(false);
+	}
 	GrabbedItem = Cast<AGrabbable>(Grabbed);
 	if (!GrabbedItem && bIsGrabbing)
 	{
 		UE_LOG(LogTemp, Error, TEXT("error z9A@: Item is not Grabbable"));
+	}
+	else if (GrabbedItem && bIsGrabbing)
+	{
+		GrabbedItem->SetIsBeingGrabbed(true);
 	}
 }
 
