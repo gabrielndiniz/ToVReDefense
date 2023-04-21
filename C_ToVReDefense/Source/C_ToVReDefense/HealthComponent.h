@@ -56,14 +56,6 @@ protected:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Health")
 	bool bIsDead;
 
-	// VFX to play on death
-	UPROPERTY(EditAnywhere, Category = "Health")
-	UParticleSystem* DeathVFX = nullptr;
-
-	// SFX to play on death
-	UPROPERTY(EditAnywhere, Category = "Health")
-	USoundBase* DeathSFX = nullptr;
-
 private:
 	// Handle death
 	void Die();

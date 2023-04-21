@@ -30,16 +30,12 @@ void UHealthComponent::TakeDamage(float Damage)
 		return;
 	}
 
-	// Calculate new health value
 	float NewHealth = FMath::Clamp(Health - Damage, 0.f, MaxHealth);
 
-	// Calculate health change
 	float HealthDelta = NewHealth - Health;
 
-	// Update health and dispatch event
 	UpdateHealth(HealthDelta);
 
-	// If health is zero or less, die
 	if (Health <= 0.f)
 	{
 		Die();
@@ -69,17 +65,6 @@ void UHealthComponent::UpdateHealth(float HealthChange)
 void UHealthComponent::Die()
 {
 	bIsDead = true;
-	if (DeathVFX)
-	{
-		// Spawn the VFX at the component's location
-		UGameplayStatics::SpawnEmitterAtLocation(GetOwner(), DeathVFX, GetOwner()->GetActorLocation());
-	}
-
-	if (DeathSFX)
-	{
-		// Play the SFX
-		UGameplayStatics::PlaySoundAtLocation(GetWorld(), DeathSFX, GetOwner()->GetActorLocation());
-	}
 	
 	OnDeath.Broadcast();
 }

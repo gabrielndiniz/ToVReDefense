@@ -55,7 +55,7 @@ void AEnemyPawn::OnDeath(UParticleSystem* DeathAnim)
 		UWorld* const World = GetWorld();
 		if (World)
 		{
-			UGameplayStatics::SpawnEmitterAtLocation(World,DeathAnim,FVector::ZeroVector,FRotator::ZeroRotator,FVector(1),true,EPSCPoolMethod::None,true);
+			UGameplayStatics::SpawnEmitterAtLocation(World,DeathAnim,GetActorLocation(),GetActorRotation(),FVector(1),true,EPSCPoolMethod::None,true);
 		
 		}
 	}

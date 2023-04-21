@@ -183,6 +183,7 @@ void AHandController::SetIsGrabbing(const bool bGrabbing, AActor* Grabbed)
 	bIsGrabbing = bGrabbing;
 	if (GrabbedItem && !bIsGrabbing)
 	{
+		GrabbedItem->ChangeGrab.Broadcast();
 		GrabbedItem->SetIsBeingGrabbed(false);
 	}
 	GrabbedItem = Cast<AGrabbable>(Grabbed);
@@ -192,6 +193,7 @@ void AHandController::SetIsGrabbing(const bool bGrabbing, AActor* Grabbed)
 	}
 	else if (GrabbedItem && bIsGrabbing)
 	{
+		GrabbedItem->ChangeGrab.Broadcast();
 		GrabbedItem->SetIsBeingGrabbed(true);
 	}
 }
@@ -210,6 +212,3 @@ bool AHandController::IsRightHand() const
 	return false;
 }
 
-void AHandController::PlayHapticEffect()
-{
-}

@@ -181,6 +181,5 @@ private:
 	float TriggerAxis = 0;
 	
 	
-	void PlayHapticEffect();
 
 };

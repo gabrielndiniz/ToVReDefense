@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Grabbable.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FChangeGrab);
 
 UCLASS()
 class C_TOVREDEFENSE_API AGrabbable : public AActor
@@ -33,6 +34,8 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Fire Weapon")
 	class UFireWeaponComponent* GetFireComponent() const {return FireComponent;}
 	
+	UPROPERTY(BlueprintAssignable, Category = "Config")
+	FChangeGrab ChangeGrab;
 	
 	UFUNCTION()
 	void SetIsBeingGrabbed(bool bGrabbed);
