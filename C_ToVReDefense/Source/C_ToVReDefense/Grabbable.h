@@ -40,8 +40,15 @@ public:
 	UFUNCTION()
 	void SetIsBeingGrabbed(bool bGrabbed);
 	
+	UFUNCTION(BlueprintPure, Category = "Fire Weapon")
+	bool GetIsForRightHand() const {return bIsForRightHand;}
+	
+	UFUNCTION()
+	USceneComponent* GetConnection() const {return Connection;}
 private:
 	
+	UPROPERTY(VisibleAnywhere, Category = "Config")
+	USceneComponent* Connection = nullptr;
 	
 	UPROPERTY()
 	UFireWeaponComponent* FireComponent;
@@ -51,6 +58,9 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	FTransform MuzzleTransform;
+	
+	UPROPERTY(EditAnywhere)
+	bool bIsForRightHand = true;
 	
 	UPROPERTY()
 	float TriggerAxisValue;

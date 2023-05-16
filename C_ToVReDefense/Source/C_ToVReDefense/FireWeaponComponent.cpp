@@ -7,6 +7,7 @@
 #include "Projectile.h"
 #include "Particles/ParticleSystem.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "Kismet/KismetMathLibrary.h" 
 
 // Sets default values for this component's properties
 UFireWeaponComponent::UFireWeaponComponent()
@@ -21,6 +22,8 @@ void UFireWeaponComponent::BeginPlay()
 	Super::BeginPlay();
 
 	GetOwner()->RegisterAllComponents();
+
+	LastComponentForward = GetOwner()->GetActorForwardVector();
 }
 
 void UFireWeaponComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -31,17 +34,11 @@ void UFireWeaponComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	{
 		Fire();
 	}
-	
 }
 
 FTransform UFireWeaponComponent::GetMuzzleTransform() const
 {
-	const USkeletalMeshComponent* MeshComponent = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
-	if (!ensureMsgf(MeshComponent, TEXT("error 3t/7: no SkeletalMeshComponent found on owner!")))
-	{
-		return FTransform::Identity;
-	}
-	return MeshComponent->GetSocketTransform(MuzzleSocket);;
+	return MuzzleSocket->GetComponentTransform();
 }
 
 float UFireWeaponComponent::GetCallbackProgression()
@@ -73,7 +70,8 @@ float UFireWeaponComponent::GetCallbackProgression()
 }
 
 void UFireWeaponComponent::SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSubclassOf<AProjectile> NewProjectileClasses, //int32 NewAmmoSize,
-                                            USoundBase* NewFireSound,  FName NewMuzzleSocket, float NewCallbackTime)
+                                            USoundBase* NewFireSound,  USceneComponent* NewMuzzleSocket, float NewCallbackTime,
+                                            bool bNewIsTurret, UStaticMeshComponent* NewTurret)
 {
 	MuzzleFlash = NewMuzzleFlash;
 	ProjectileClass = NewProjectileClasses;
@@ -82,6 +80,14 @@ void UFireWeaponComponent::SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSu
 	//{
 	//	AmmoSize = NewAmmoSize;
 	//}
+
+	if (bNewIsTurret && NewTurret != nullptr)
+	{
+		bIsTurret = true;
+		Turret = NewTurret;
+		LastComponentForward = Turret->GetForwardVector();
+	}
+	
 	if (CallbackTime)
 	{
 		CallbackTime = NewCallbackTime;
@@ -140,4 +146,40 @@ void UFireWeaponComponent::Fire()
 			}
 	}
 
+}
+
+void UFireWeaponComponent::PointAtTarget(FVector Target, FVector PointAt, bool IsTargeting)
+{
+	if (Turret == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Error 54#g: Turret is null in PointAtTarget"));
+		return;
+	}
+
+	float DistanceToTarget = FVector::Dist(Target,PointAt);
+
+	if (DistanceToTarget < Tolerance && IsTargeting)
+	{
+		return;
+	}
+	
+	const FVector ComponentLocation = Turret->GetComponentLocation();
+	const FQuat ComponentRotation = Turret->GetComponentQuat();
+
+
+	const FQuat DesiredRotation = UKismetMathLibrary::FindLookAtRotation(ComponentLocation, Target).Quaternion();
+
+	float CurrentRotationSpeed = RotationSpeed;
+
+	if (DistanceToTarget < Correction)
+	{
+		CurrentRotationSpeed = CurrentRotationSpeed * CorrectionFactor * (Correction-DistanceToTarget)/Correction;
+	}
+	
+	const FQuat NewRotation = FQuat::Slerp(ComponentRotation, DesiredRotation, CurrentRotationSpeed);
+
+	// Set the new rotation for the component
+	Turret->SetWorldRotation(NewRotation);
+
+	
 }

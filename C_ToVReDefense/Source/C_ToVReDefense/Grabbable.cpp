@@ -18,7 +18,7 @@ AGrabbable::AGrabbable()
 	GrabbableRootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SetRootComponent(GrabbableRootComponent);
 
-
+	Connection = CreateDefaultSubobject<UPrimitiveComponent>(TEXT("Connection"));
 
 }
 

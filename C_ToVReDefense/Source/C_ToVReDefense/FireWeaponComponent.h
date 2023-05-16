@@ -57,11 +57,15 @@ public:
 //need to take out USkeletalMeshComponent and stuff
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 	void SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSubclassOf<class AProjectile> NewProjectileClasses, //int32 NewAmmoSize,
-	class USoundBase* NewFireSound, FName NewMuzzleSocket, float NewCallbackTime);
+	class USoundBase* NewFireSound, USceneComponent* NewMuzzleSocket, float NewCallbackTime, bool bNewIsTurret, UStaticMeshComponent* NewTurret);
 	
-	
+	UFUNCTION()
 	void Fire();
+
 	
+	UFUNCTION(BlueprintCallable, Category = "Fire Weapon")
+	void PointAtTarget(FVector Target, FVector PointAt, bool IsTargeting);
+
 private:
 	
 	UPROPERTY()
@@ -80,6 +84,26 @@ private:
 	UPROPERTY()
 	TSubclassOf<class AProjectile> ProjectileClass;
 
+	
+	UPROPERTY()
+	bool bIsTurret = false;
+
+	
+	UPROPERTY()
+	UStaticMeshComponent* Turret;
+
+	UPROPERTY(EditAnywhere)
+	float RotationSpeed = 0;
+
+	
+	UPROPERTY(EditAnywhere)
+	float Tolerance = 1;
+	
+	UPROPERTY(EditAnywhere)
+	float Correction = 0;
+	
+	UPROPERTY(EditAnywhere)
+	float CorrectionFactor = 1;
 	//UPROPERTY()
 	//int32 AmmoSize = 1;
 	
@@ -87,7 +111,7 @@ private:
 	class USoundBase* FireSound;
 			
 	UPROPERTY()
-	FName MuzzleSocket=TEXT("Muzzle");
+	USceneComponent* MuzzleSocket;
 
 	UPROPERTY()
 	float TriggerAxisValue = 0;
@@ -95,13 +119,19 @@ private:
 	UPROPERTY()
 	float CallbackTime = SMALL_NUMBER;
 		
+	UPROPERTY()
 	bool bIsFiring = false;
 
+	UPROPERTY()
 	bool bCanFire=true;
 
+	UPROPERTY()
 	int32 CurrentProjectileIndex;
 
+	UPROPERTY()
 	float LastFireTime;
 
+	UPROPERTY()
+	FVector LastComponentForward;
 
 };
