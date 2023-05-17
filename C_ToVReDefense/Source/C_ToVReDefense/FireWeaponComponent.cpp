@@ -70,12 +70,14 @@ float UFireWeaponComponent::GetCallbackProgression()
 }
 
 void UFireWeaponComponent::SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSubclassOf<AProjectile> NewProjectileClasses, //int32 NewAmmoSize,
-                                            USoundBase* NewFireSound,  USceneComponent* NewMuzzleSocket, float NewCallbackTime,
+                                            USoundBase* NewFireSound, USceneComponent* NewMuzzleSocket, float NewCallbackTime,
                                             bool bNewIsTurret, UStaticMeshComponent* NewTurret)
 {
 	MuzzleFlash = NewMuzzleFlash;
 	ProjectileClass = NewProjectileClasses;
 	FireSound = NewFireSound;
+
+
 	//if (NewAmmoSize)
 	//{
 	//	AmmoSize = NewAmmoSize;
@@ -87,13 +89,12 @@ void UFireWeaponComponent::SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSu
 		Turret = NewTurret;
 		LastComponentForward = Turret->GetForwardVector();
 	}
-	
+
 	if (CallbackTime)
 	{
 		CallbackTime = NewCallbackTime;
 	}
 	MuzzleSocket = NewMuzzleSocket;
-			
 }
 
 
@@ -109,20 +110,13 @@ void UFireWeaponComponent::Fire()
 		StartSliderTime = GetWorld()->GetRealTimeSeconds();
 		bCanFire = false;
 	}
-	
-    
+
 	bIsFiring = true;
-
-
-	// Play FireSound
 
 	FVector SpawnLocation = GetMuzzleTransform().GetLocation();
 	FRotator SpawnRotation = GetMuzzleTransform().GetRotation().Rotator();
 
-	
 	UGameplayStatics::PlaySoundAtLocation(this, FireSound, SpawnLocation);
-
-	
 
 	// Spawn MuzzleFlash
 	if (MuzzleFlash)
@@ -130,42 +124,37 @@ void UFireWeaponComponent::Fire()
 		UWorld* const World = GetWorld();
 		if (World)
 		{
-			UGameplayStatics::SpawnEmitterAtLocation(World,MuzzleFlash,SpawnLocation,SpawnRotation,FVector(1),true,EPSCPoolMethod::None,true);
-		
+			UGameplayStatics::SpawnEmitterAtLocation(World, MuzzleFlash, SpawnLocation, SpawnRotation, FVector(1), true, EPSCPoolMethod::None, true);
 		}
 	}
 
-
 	if (ProjectileClass)
 	{
-		
 		AProjectile* ProjectileToFire = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
-			if (ProjectileToFire)
-			{
-				ProjectileToFire->SetOwner(GetOwner());
-			}
+		if (ProjectileToFire)
+		{
+			ProjectileToFire->SetOwner(GetOwner());
+		}
 	}
-
 }
+
 
 void UFireWeaponComponent::PointAtTarget(FVector Target, FVector PointAt, bool IsTargeting)
 {
 	if (Turret == nullptr)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Error 54#g: Turret is null in PointAtTarget"));
 		return;
 	}
 
-	float DistanceToTarget = FVector::Dist(Target,PointAt);
+	float DistanceToTarget = FVector::Dist(Target, PointAt);
 
 	if (DistanceToTarget < Tolerance && IsTargeting)
 	{
 		return;
 	}
-	
+
 	const FVector ComponentLocation = Turret->GetComponentLocation();
 	const FQuat ComponentRotation = Turret->GetComponentQuat();
-
 
 	const FQuat DesiredRotation = UKismetMathLibrary::FindLookAtRotation(ComponentLocation, Target).Quaternion();
 
@@ -173,13 +162,13 @@ void UFireWeaponComponent::PointAtTarget(FVector Target, FVector PointAt, bool I
 
 	if (DistanceToTarget < Correction)
 	{
-		CurrentRotationSpeed = CurrentRotationSpeed * CorrectionFactor * (Correction-DistanceToTarget)/Correction;
+		float ChangeOnSpeed = (1 - CorrectionFactor) * DistanceToTarget / Correction + CorrectionFactor;
+
+		CurrentRotationSpeed = CurrentRotationSpeed * ChangeOnSpeed;
 	}
-	
+
 	const FQuat NewRotation = FQuat::Slerp(ComponentRotation, DesiredRotation, CurrentRotationSpeed);
 
 	// Set the new rotation for the component
 	Turret->SetWorldRotation(NewRotation);
-
-	
 }
