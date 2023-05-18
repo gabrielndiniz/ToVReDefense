@@ -68,7 +68,16 @@ void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor,
 			else
 			{
 			
-				UE_LOG(LogTemp, Warning, TEXT("The ammo do not found healthcomponent."));
+				UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent. Name of the actor: %s"), *OtherActor->GetName());
+				if (OtherActor->GetParentActor())
+				{
+					UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent. Name of the parent actor: %s"), *OtherActor->GetParentActor()->GetName());
+				}
+				else
+				{
+					UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent and does not have parent."));
+				}
+				
 			}
 		}
 		ExplosionForce->Radius = ExplosionIntensity;
