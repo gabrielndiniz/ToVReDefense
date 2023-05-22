@@ -30,15 +30,32 @@ void UFireWeaponComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	//Only for Player. AI will manage Fire at Blueprint.
+
 	if (TriggerAxisValue > 0.9f)
 	{
-		Fire();
+		bIsFiring = true;
+	}
+	if (!bCanFire)
+	{
+		GetCallbackProgression();
+	}	
+	else if (bIsFiring)
+	{
+		Fire(GetMuzzleTransform().GetLocation(), GetMuzzleTransform().GetRotation().Rotator(), FireSound, MuzzleFlash, ProjectileClass);
 	}
 }
 
 FTransform UFireWeaponComponent::GetMuzzleTransform() const
 {
-	return MuzzleSocket->GetComponentTransform();
+	if (MuzzleSocket)
+	{
+		return MuzzleSocket->GetComponentTransform();
+	}
+	else
+	{
+		return MuzzleTransform;
+	}
 }
 
 float UFireWeaponComponent::GetCallbackProgression()
@@ -98,39 +115,31 @@ void UFireWeaponComponent::SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSu
 }
 
 
-void UFireWeaponComponent::Fire()
+void UFireWeaponComponent::Fire(FVector MuzzleLocation, FRotator MuzzleRotation, USoundBase* FireSFX,
+							UParticleSystem* FireVFX, TSubclassOf<AProjectile> Projectile)
 {
-	GetCallbackProgression();
-	if (!bCanFire)
+	StartSliderTime = GetWorld()->GetRealTimeSeconds();
+
+	bCanFire = false;
+
+
+	if (FireSFX)
 	{
-		return;
-	}
-	else
-	{
-		StartSliderTime = GetWorld()->GetRealTimeSeconds();
-		bCanFire = false;
+		UGameplayStatics::PlaySoundAtLocation(this, FireSFX, MuzzleLocation);
 	}
 
-	bIsFiring = true;
-
-	FVector SpawnLocation = GetMuzzleTransform().GetLocation();
-	FRotator SpawnRotation = GetMuzzleTransform().GetRotation().Rotator();
-
-	UGameplayStatics::PlaySoundAtLocation(this, FireSound, SpawnLocation);
-
-	// Spawn MuzzleFlash
-	if (MuzzleFlash)
+	if (FireVFX)
 	{
 		UWorld* const World = GetWorld();
 		if (World)
 		{
-			UGameplayStatics::SpawnEmitterAtLocation(World, MuzzleFlash, SpawnLocation, SpawnRotation, FVector(1), true, EPSCPoolMethod::None, true);
+			UGameplayStatics::SpawnEmitterAtLocation(World, FireVFX, MuzzleLocation, MuzzleRotation, FVector(1), true, EPSCPoolMethod::None, true);
 		}
 	}
 
-	if (ProjectileClass)
+	if (Projectile)
 	{
-		AProjectile* ProjectileToFire = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+		AProjectile* ProjectileToFire = GetWorld()->SpawnActor<AProjectile>(Projectile, MuzzleLocation, MuzzleRotation);
 		if (ProjectileToFire)
 		{
 			ProjectileToFire->SetOwner(GetOwner());

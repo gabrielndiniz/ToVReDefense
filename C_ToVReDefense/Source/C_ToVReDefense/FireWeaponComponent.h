@@ -32,24 +32,24 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Fire Weapon")
 	float GetTriggerAxisValue() const {return TriggerAxisValue;}
 
+	UFUNCTION(BlueprintCallable, Category="Fire Weapon")
+	void SetMuzzleTransform(FTransform NewMuzzleTransform) {MuzzleTransform = NewMuzzleTransform;}
+
 	UFUNCTION(BlueprintPure, Category="Fire Weapon")
 	FTransform GetMuzzleTransform() const;
+
+	UFUNCTION(BlueprintCallable, Category="Fire Weapon")
+	void SetIsFiring(bool bNewIsFiring) {bIsFiring = bNewIsFiring;}
 
 	UFUNCTION(BlueprintPure, Category="Fire Weapon")
 	bool GetIsFiring() const	{return bIsFiring;}
 
 	UFUNCTION(BlueprintPure, Category="Fire Weapon")
 	float GetCallbackTime() const	{return CallbackTime;}
-	
-	UFUNCTION(BlueprintCallable, Category="Fire Weapon")
-	void SetStartSliderTime(float InitialTime) {StartSliderTime = InitialTime;}
-	
+		
 	UFUNCTION(BlueprintPure, Category="Fire Weapon")
 	float GetCallbackProgression();
 	
-	UFUNCTION(BlueprintCallable, Category = "Fire Weapon")
-	void SetCanFire(bool bNewCanFire) {bCanFire = bNewCanFire;}
-
 	UFUNCTION(BlueprintPure, Category = "Fire Weapon")
 	bool GetCanFire() const {return bCanFire;}
 
@@ -57,10 +57,12 @@ public:
 //need to take out USkeletalMeshComponent and stuff
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 	void SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSubclassOf<class AProjectile> NewProjectileClasses, //int32 NewAmmoSize,
-	class USoundBase* NewFireSound, USceneComponent* NewMuzzleSocket, float NewCallbackTime, bool bNewIsTurret, UStaticMeshComponent* NewTurret);
+	class USoundBase* NewFireSound, USceneComponent* NewMuzzleSocket, float NewCallbackTime, bool bNewIsTurret,
+	UStaticMeshComponent* NewTurret);
 	
-	UFUNCTION()
-	void Fire();
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	void Fire(FVector MuzzleLocation, FRotator MuzzleRotation, USoundBase* FireSFX, UParticleSystem* FireVFX,
+	TSubclassOf<AProjectile> Projectile);
 
 	
 	UFUNCTION(BlueprintCallable, Category = "Fire Weapon")
@@ -124,6 +126,9 @@ private:
 
 	UPROPERTY()
 	bool bCanFire=true;
+	
+	UPROPERTY()
+	FTransform MuzzleTransform = FTransform::Identity;
 
 	UPROPERTY()
 	int32 CurrentProjectileIndex;

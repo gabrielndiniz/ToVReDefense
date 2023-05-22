@@ -6,20 +6,6 @@
 #include "GameFramework/Actor.h"
 #include "Projectile.generated.h"
 
-/* to be implemented later
-UENUM(BlueprintType)
-enum class EProjectileType : uint8
-{
-	CloseCombat,
-	Slug,
-	Shotshell,
-	Explosive,
-	Laser,
-	Electric
-};
-*/
-
-
 UCLASS()
 class C_TOVREDEFENSE_API AProjectile : public AActor
 {
