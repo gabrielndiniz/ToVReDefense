@@ -125,7 +125,7 @@ void UFireWeaponComponent::Fire(FVector MuzzleLocation, FRotator MuzzleRotation,
 
 	if (FireSFX)
 	{
-		UGameplayStatics::PlaySoundAtLocation(this, FireSFX, MuzzleLocation);
+		UGameplayStatics::PlaySoundAtLocation(this, FireSFX, MuzzleLocation, MuzzleRotation, SoundVolumeMultiplier);
 	}
 
 	if (FireVFX)
@@ -133,16 +133,40 @@ void UFireWeaponComponent::Fire(FVector MuzzleLocation, FRotator MuzzleRotation,
 		UWorld* const World = GetWorld();
 		if (World)
 		{
-			UGameplayStatics::SpawnEmitterAtLocation(World, FireVFX, MuzzleLocation, MuzzleRotation, FVector(1), true, EPSCPoolMethod::None, true);
+			UGameplayStatics::SpawnEmitterAtLocation(World, FireVFX, MuzzleLocation, MuzzleRotation, FVector(1),
+				true, EPSCPoolMethod::None, true);
 		}
 	}
 
-	if (Projectile)
+	if (Projectile && !bIsHeavyRocket)
 	{
 		AProjectile* ProjectileToFire = GetWorld()->SpawnActor<AProjectile>(Projectile, MuzzleLocation, MuzzleRotation);
 		if (ProjectileToFire)
 		{
 			ProjectileToFire->SetOwner(GetOwner());
+		}
+	}
+	else if (Projectile && bIsHeavyRocket)
+	{
+		if (AttachedProjectiles.Num()<=0)
+		{
+			GetOwner()->GetAttachedActors(AttachedProjectiles);
+		}
+		if (AttachedProjectiles.Num()<=0)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Error @3f$: Attached Actors not found!"));
+			return;
+		}
+		AProjectile* AttachedProjectile = Cast<AProjectile>(AttachedProjectiles[0]);
+		AttachedProjectiles.RemoveAt(0);
+		if (AttachedProjectile)
+		{
+			AttachedProjectile->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+			AttachedProjectile->LaunchProjectile();
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Error @3f$: Attached Actor is not a Projectile type!"));
 		}
 	}
 }

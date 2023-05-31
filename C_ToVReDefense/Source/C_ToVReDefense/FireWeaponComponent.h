@@ -67,6 +67,10 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category = "Fire Weapon")
 	void PointAtTarget(FVector Target, FVector PointAt, bool IsTargeting);
+	
+	
+	UFUNCTION(BlueprintCallable, Category = "Fire Weapon")
+	void SetIsHeavyRocket(bool bNewIsHeavyRocket) {bIsHeavyRocket = bNewIsHeavyRocket;}
 
 private:
 	
@@ -111,6 +115,13 @@ private:
 	
 	UPROPERTY()
 	class USoundBase* FireSound;
+
+	
+	UPROPERTY(EditAnywhere)
+	float SoundVolumeMultiplier = 0.1;
+	
+	UPROPERTY(EditAnywhere)
+	bool bIsHeavyRocket = false;
 			
 	UPROPERTY()
 	USceneComponent* MuzzleSocket;
@@ -138,5 +149,8 @@ private:
 
 	UPROPERTY()
 	FVector LastComponentForward;
+
+	UPROPERTY()
+	TArray<AActor*> AttachedProjectiles;
 
 };

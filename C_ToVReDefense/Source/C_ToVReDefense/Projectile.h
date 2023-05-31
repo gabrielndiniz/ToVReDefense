@@ -33,7 +33,12 @@ public:
 						float NewDamageRadius, float NewSpeed, float newExplosionIntensity);
 
 	//if I do not use spawn projectile
-	//void LaunchProjectile(FTransform InitialLocation);
+
+	UFUNCTION()
+	void PrepareToLaunchProjectile();
+
+	UFUNCTION()
+	void LaunchProjectile();
 
 	
 private:
@@ -78,11 +83,18 @@ private:
 	UPROPERTY()
 	bool bIsReady = true;
 
+	
+	UPROPERTY(EditAnywhere)
+	float EnableCollisionOnLaunch = 1;
+
 	//UPROPERTY()
 	//FTransform StartingPoint = FTransform::Identity;
 	
 	UFUNCTION()
-	void OnTimerExpire();
+	void OnTimerAfterHit();
+	
+	UFUNCTION()
+	void OnTimerAfterLaunch();
 
 	UPROPERTY()
 	FTimerHandle TimerHandle;

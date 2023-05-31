@@ -27,7 +27,7 @@ void AProjectile::BeginPlay()
 	
 
 	
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerExpire, DestroyDelayOnFire, false);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerAfterHit, DestroyDelayOnFire, false);
 }
 
 void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
@@ -91,7 +91,7 @@ void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor,
 		ExplosionForce->Radius = ExplosionIntensity;
 		ExplosionForce->FireImpulse();
 	
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerExpire, DestroyDelayOnHit, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerAfterHit, DestroyDelayOnHit, false);
 		bIsReady = false;
 	}
 }
@@ -121,9 +121,36 @@ void AProjectile::SetProjectile(UStaticMeshComponent* NewCollisionMesh,
 
 	ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);
 }
+void AProjectile::PrepareToLaunchProjectile() 
+{
+	SetActorEnableCollision(false);
+}
 
 
-void AProjectile::OnTimerExpire()
+void AProjectile::LaunchProjectile() 
+{
+	if (ProjectileMovement)
+	{
+		ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Error 1nD@: ProjectileMovement not found!"));
+		return;
+	}
+
+	FTimerHandle CollisionTimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerAfterLaunch,
+		EnableCollisionOnLaunch, false);
+}
+
+
+void AProjectile::OnTimerAfterHit()
 {
 	Destroy();
+}
+
+void AProjectile::OnTimerAfterLaunch()
+{
+	SetActorEnableCollision(true);
 }
