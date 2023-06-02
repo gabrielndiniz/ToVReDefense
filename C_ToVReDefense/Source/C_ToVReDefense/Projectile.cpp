@@ -24,12 +24,18 @@ void AProjectile::BeginPlay()
 	Super::BeginPlay();
 	
 	CollisionMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
-	
-
-	
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerAfterHit, DestroyDelayOnFire, false);
+	if (!bIsHeavyRocket)
+	{
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerAfterHit, DestroyDelayOnFire, false);
+	}
 }
 
+// Called every frame
+void AProjectile::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+}
 void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
 {
 	if (OtherActor == GetOwner())
@@ -37,69 +43,7 @@ void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor,
 		UE_LOG(LogTemp, Warning, TEXT("Error 1nD@: OtherActor is equal to the owner!"));
 		return;
 	}
-	if (bIsReady)
-	{
-		LaunchBlast->Deactivate();
-		ImpactBlast->Activate();
-
-		//	SetRootComponent(ImpactBlast);
-		if (DamageRadius > 0)
-		{
-			TArray<AActor*> OverlappingActors;
-	
-			CollisionMesh->GetOverlappingActors(OverlappingActors);
-
-			for (AActor* OverlappingActor : OverlappingActors)
-			{
-				UHealthComponent* HealthComponent = OverlappingActor->FindComponentByClass<UHealthComponent>();
-				if (HealthComponent)
-				{
-					float DistanceFromImpact = FVector::Distance(OverlappingActor->GetActorLocation(), Hit.ImpactPoint);
-					float Damage = ProjectileDamage * FMath::Clamp(1.f - DistanceFromImpact / DamageRadius, 0.f, 1.f);
-					HealthComponent->TakeDamage(Damage);
-				}
-			}
-		
-		}
-		else
-		{
-			UHealthComponent* HealthComponent = OtherActor->FindComponentByClass<UHealthComponent>();
-
-			if (HealthComponent)
-
-			{
-
-				HealthComponent->TakeDamage(ProjectileDamage);
-
-
-			}
-			else
-			{
-			
-				UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent. Name of the actor: %s"), *OtherActor->GetName());
-				if (OtherActor->GetParentActor())
-				{
-					UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent. Name of the parent actor: %s"), *OtherActor->GetParentActor()->GetName());
-				}
-				else
-				{
-					UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent and does not have parent."));
-				}
-				
-			}
-		}
-		ExplosionForce->Radius = ExplosionIntensity;
-		ExplosionForce->FireImpulse();
-	
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerAfterHit, DestroyDelayOnHit, false);
-		bIsReady = false;
-	}
-}
-// Called every frame
-void AProjectile::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
+	CauseDamage(OtherActor, Hit);
 }
 
 void AProjectile::SetProjectile(UStaticMeshComponent* NewCollisionMesh,
@@ -117,18 +61,95 @@ void AProjectile::SetProjectile(UStaticMeshComponent* NewCollisionMesh,
 	DamageRadius = NewDamageRadius;
 	Speed = NewSpeed;
 	ExplosionIntensity = newExplosionIntensity;
-	
 
-	ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);
+	if (bIsHeavyRocket)
+	{
+		LaunchBlast->Deactivate();
+		ProjectileMovement->SetVelocityInLocalSpace(FVector::ZeroVector);
+	}
+	else
+	{
+		ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);
+	}
 }
-void AProjectile::PrepareToLaunchProjectile() 
+
+
+void AProjectile::CauseDamage(AActor* OtherActor, const FHitResult& Hit)
 {
-	SetActorEnableCollision(false);
+	if (!bIsReady)
+	{
+		return;
+	}
+	
+	LaunchBlast->Deactivate();
+	ImpactBlast->Activate();
+
+
+	if (DamageRadius > 0)
+	{
+		TArray<FHitResult> HitResults;
+		FVector ExplosionCenter = Hit.ImpactPoint;
+
+		FCollisionQueryParams QueryParams;
+		QueryParams.bTraceComplex = true;
+		QueryParams.bReturnPhysicalMaterial = false;
+
+		GetWorld()->SweepMultiByChannel(HitResults, ExplosionCenter, ExplosionCenter, FQuat::Identity,
+			ECC_Visibility, FCollisionShape::MakeSphere(DamageRadius), QueryParams);
+
+		for (const FHitResult& HitResult : HitResults)
+		{
+			AActor* OverlappingActor = HitResult.GetActor();
+			UHealthComponent* HealthComponent = OverlappingActor->FindComponentByClass<UHealthComponent>();
+
+			if (HealthComponent)
+			{
+				float DistanceFromImpact = FVector::Distance(OverlappingActor->GetActorLocation(), ExplosionCenter);
+				float Damage = ProjectileDamage * FMath::Clamp(1.f - DistanceFromImpact / DamageRadius, 0.f, 1.f);
+				HealthComponent->TakeDamage(Damage);
+			}
+		}		
+	}
+	else
+	{
+		UHealthComponent* HealthComponent = OtherActor->FindComponentByClass<UHealthComponent>();
+
+		if (HealthComponent)
+
+		{
+
+			HealthComponent->TakeDamage(ProjectileDamage);
+
+
+		}
+		else
+		{
+			
+			UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent. Name of the actor: %s"), *OtherActor->GetName());
+			if (OtherActor->GetParentActor())
+			{
+				UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent. Name of the parent actor: %s"), *OtherActor->GetParentActor()->GetName());
+			}
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent and does not have parent."));
+			}
+				
+		}
+	}
+	ExplosionForce->Radius = ExplosionIntensity;
+	ExplosionForce->FireImpulse();
+	
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerAfterHit, DestroyDelayOnHit, false);
+	bIsReady = false;
+	
 }
 
 
 void AProjectile::LaunchProjectile() 
 {
+	LaunchBlast->Activate();
+	SetActorEnableCollision(false);
 	if (ProjectileMovement)
 	{
 		ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);

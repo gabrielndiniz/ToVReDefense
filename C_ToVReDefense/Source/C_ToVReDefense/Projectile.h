@@ -26,6 +26,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	void CauseDamage(AActor* OtherActor, const FHitResult& Hit);
+
 	UFUNCTION(BlueprintCallable, Category = "Config")
 	void SetProjectile(UStaticMeshComponent* NewCollisionMesh, class UProjectileMovementComponent* NewProjectileMovement, 
 						UParticleSystemComponent* NewLaunchBlast, UParticleSystemComponent* NewImpactBlast, 
@@ -34,8 +37,6 @@ public:
 
 	//if I do not use spawn projectile
 
-	UFUNCTION()
-	void PrepareToLaunchProjectile();
 
 	UFUNCTION()
 	void LaunchProjectile();
@@ -44,6 +45,9 @@ public:
 private:
 //	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 //	EProjectileType ProjectileType;
+
+	UPROPERTY(EditAnywhere)
+	bool bIsHeavyRocket = false;
 
 	
 	UPROPERTY()

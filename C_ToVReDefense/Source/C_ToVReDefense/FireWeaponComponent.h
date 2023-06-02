@@ -58,19 +58,22 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 	void SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSubclassOf<class AProjectile> NewProjectileClasses, //int32 NewAmmoSize,
 	class USoundBase* NewFireSound, USceneComponent* NewMuzzleSocket, float NewCallbackTime, bool bNewIsTurret,
-	UStaticMeshComponent* NewTurret);
+	UStaticMeshComponent* NewTurret, bool bNewIsHeavyRocket);
 	
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 	void Fire(FVector MuzzleLocation, FRotator MuzzleRotation, USoundBase* FireSFX, UParticleSystem* FireVFX,
 	TSubclassOf<AProjectile> Projectile);
 
 	
+	
+	UFUNCTION(BlueprintPure, Category = "Firing")
+	float GetAmmoSpent() const {return AmmoSpent;}
+
+	
 	UFUNCTION(BlueprintCallable, Category = "Fire Weapon")
 	void PointAtTarget(FVector Target, FVector PointAt, bool IsTargeting);
 	
 	
-	UFUNCTION(BlueprintCallable, Category = "Fire Weapon")
-	void SetIsHeavyRocket(bool bNewIsHeavyRocket) {bIsHeavyRocket = bNewIsHeavyRocket;}
 
 private:
 	
@@ -99,17 +102,17 @@ private:
 	UStaticMeshComponent* Turret;
 
 	UPROPERTY(EditAnywhere)
-	float RotationSpeed = 0;
+	float RotationSpeed = 0.05;
 
 	
 	UPROPERTY(EditAnywhere)
 	float Tolerance = 1;
 	
 	UPROPERTY(EditAnywhere)
-	float Correction = 0;
+	float Correction = 100;
 	
 	UPROPERTY(EditAnywhere)
-	float CorrectionFactor = 1;
+	float CorrectionFactor = 10;
 	//UPROPERTY()
 	//int32 AmmoSize = 1;
 	
@@ -152,5 +155,8 @@ private:
 
 	UPROPERTY()
 	TArray<AActor*> AttachedProjectiles;
+
+	UPROPERTY()
+	int32 AmmoSpent = 0;
 
 };

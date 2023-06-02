@@ -88,11 +88,12 @@ float UFireWeaponComponent::GetCallbackProgression()
 
 void UFireWeaponComponent::SetWeaponAndAmmo(UParticleSystem* NewMuzzleFlash, TSubclassOf<AProjectile> NewProjectileClasses, //int32 NewAmmoSize,
                                             USoundBase* NewFireSound, USceneComponent* NewMuzzleSocket, float NewCallbackTime,
-                                            bool bNewIsTurret, UStaticMeshComponent* NewTurret)
+                                            bool bNewIsTurret, UStaticMeshComponent* NewTurret, bool bNewIsHeavyRocket)
 {
 	MuzzleFlash = NewMuzzleFlash;
 	ProjectileClass = NewProjectileClasses;
 	FireSound = NewFireSound;
+	bIsHeavyRocket = bNewIsHeavyRocket;
 
 
 	//if (NewAmmoSize)
@@ -169,6 +170,7 @@ void UFireWeaponComponent::Fire(FVector MuzzleLocation, FRotator MuzzleRotation,
 			UE_LOG(LogTemp, Warning, TEXT("Error @3f$: Attached Actor is not a Projectile type!"));
 		}
 	}
+	AmmoSpent = AmmoSpent+1;
 }
 
 
