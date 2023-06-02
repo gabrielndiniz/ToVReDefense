@@ -67,7 +67,7 @@ public:
 	
 	
 	UFUNCTION(BlueprintPure, Category = "Firing")
-	float GetAmmoSpent() const {return AmmoSpent;}
+	int32 GetAmmoSpent() const {return AmmoSpent;}
 
 	
 	UFUNCTION(BlueprintCallable, Category = "Fire Weapon")
