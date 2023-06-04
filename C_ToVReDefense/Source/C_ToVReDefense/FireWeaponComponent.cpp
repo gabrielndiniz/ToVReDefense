@@ -3,6 +3,7 @@
 
 #include "FireWeaponComponent.h"
 
+#include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "Projectile.h"
 #include "Particles/ParticleSystem.h"
@@ -206,4 +207,39 @@ void UFireWeaponComponent::PointAtTarget(FVector Target, FVector PointAt, bool I
 
 	// Set the new rotation for the component
 	Turret->SetWorldRotation(NewRotation);
+}
+
+bool UFireWeaponComponent::PredictClearShot(const FVector& TargetLocation, const FVector& TargetVelocity, float ProjectileSpeed, float MaxPredictionTime) const
+{
+	FVector StartLocation = GetMuzzleTransform().GetLocation();
+	FVector Direction = TargetLocation - StartLocation;
+	float Distance = Direction.Size();
+	Direction.Normalize();
+
+	float TimeToReachTarget = Distance / ProjectileSpeed;
+
+	FVector PredictedTargetLocation = TargetLocation + TargetVelocity * TimeToReachTarget;
+
+	FVector Error = PredictedTargetLocation - TargetLocation;
+
+	float MaxError = MaxPredictionTime * TargetVelocity.Size();
+
+	if (Error.SizeSquared() <= MaxError * MaxError)
+	{
+		FHitResult HitResult;
+		FCollisionQueryParams Params;
+		Params.AddIgnoredActor(GetOwner());  
+		DrawDebugLine(GetWorld(), StartLocation, PredictedTargetLocation, FColor::Green, false, 2.0f, 0, 1.0f);
+
+		bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, PredictedTargetLocation, ECC_Visibility, Params);
+
+		if (bHit)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	return false;
 }
