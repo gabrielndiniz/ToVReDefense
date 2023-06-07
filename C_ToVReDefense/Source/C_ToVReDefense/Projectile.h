@@ -32,8 +32,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Config")
 	void SetProjectile(UStaticMeshComponent* NewCollisionMesh, class UProjectileMovementComponent* NewProjectileMovement, 
 						UParticleSystemComponent* NewLaunchBlast, UParticleSystemComponent* NewImpactBlast, 
-						class URadialForceComponent* NewExplosionForce, float NewDestroyDelay, float NewProjectileDamage,
-						float NewDamageRadius, float NewSpeed, float newExplosionIntensity);
+						class URadialForceComponent* NewExplosionForce, USoundBase* NewImpactSound, float NewDestroyDelay,
+						float NewProjectileDamage, float NewDamageRadius, float NewSpeed, float newExplosionIntensity);
 
 	//if I do not use spawn projectile
 
@@ -67,6 +67,12 @@ private:
 	class URadialForceComponent* ExplosionForce = nullptr;
 
 	UPROPERTY()
+	USoundBase* ImpactSound = nullptr;
+
+	UPROPERTY(EditAnywhere)
+	float SoundVolumeMultiplier = 0.1;
+	
+	UPROPERTY()
 	float DestroyDelayOnHit = 5.f;
 	
 	UPROPERTY()
@@ -89,7 +95,7 @@ private:
 
 	
 	UPROPERTY(EditAnywhere)
-	float EnableCollisionOnLaunch = 1;
+	float EnableCollisionOnLaunch = 0.2;
 
 	//UPROPERTY()
 	//FTransform StartingPoint = FTransform::Identity;

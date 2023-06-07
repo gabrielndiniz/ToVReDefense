@@ -1,30 +1,21 @@
 #include "HealthComponent.h"
 
-#include "Kismet/GameplayStatics.h"
-
-// Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
 {
-	// Set default max health
 	MaxHealth = 100.f;
 }
 
-// Called when the game starts
 void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Set initial health
 	Health = MaxHealth;
 
-	// Initialize bIsDead flag to false
 	bIsDead = false;
 }
 
-// Take damage and update health
 void UHealthComponent::TakeDamage(float Damage)
 {
-	// If already dead, don't take any damage
 	if (bIsDead)
 	{
 		return;
@@ -42,19 +33,28 @@ void UHealthComponent::TakeDamage(float Damage)
 	}
 }
 
-// Get current health
 float UHealthComponent::GetHealth() const
 {
 	return Health;
 }
 
-// Get max health
 float UHealthComponent::GetMaxHealth() const
 {
 	return MaxHealth;
 }
 
-// Update health and dispatch event
+FText UHealthComponent::GetHealthPercentage() const
+{
+	float NumberHealthPercentage = (Health / MaxHealth) * 100.f;
+	if (NumberHealthPercentage != 100.f)
+	{
+		NumberHealthPercentage = FMath::Clamp(NumberHealthPercentage, 1.f, 99.f);
+	}
+	int32 RoundedPercentage = FMath::RoundToInt(NumberHealthPercentage);
+
+	return FText::Format(FText::FromString("{0}%"), FText::AsNumber(RoundedPercentage));
+}
+
 void UHealthComponent::UpdateHealth(float HealthChange)
 {
 	Health += HealthChange;

@@ -209,7 +209,8 @@ void UFireWeaponComponent::PointAtTarget(FVector Target, FVector PointAt, bool I
 	Turret->SetWorldRotation(NewRotation);
 }
 
-bool UFireWeaponComponent::PredictClearShot(const FVector& TargetLocation, const FVector& TargetVelocity, float ProjectileSpeed, float MaxPredictionTime) const
+bool UFireWeaponComponent::PredictClearShot(const FVector& TargetLocation, const FVector& TargetVelocity,
+			float ProjectileSpeed, float MaxPredictionTime, TArray<AActor*> AcceptableTargets) const
 {
 	FVector StartLocation = GetMuzzleTransform().GetLocation();
 	FVector Direction = TargetLocation - StartLocation;
@@ -228,7 +229,11 @@ bool UFireWeaponComponent::PredictClearShot(const FVector& TargetLocation, const
 	{
 		FHitResult HitResult;
 		FCollisionQueryParams Params;
-		Params.AddIgnoredActor(GetOwner());  
+		Params.AddIgnoredActor(GetOwner());
+		for (auto AcceptableTarget : AcceptableTargets)
+		{
+			Params.AddIgnoredActor(AcceptableTarget);
+		}
 		DrawDebugLine(GetWorld(), StartLocation, PredictedTargetLocation, FColor::Green, false, 2.0f, 0, 1.0f);
 
 		bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, PredictedTargetLocation, ECC_Visibility, Params);

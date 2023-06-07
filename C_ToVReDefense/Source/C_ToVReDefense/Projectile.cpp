@@ -48,8 +48,8 @@ void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor,
 
 void AProjectile::SetProjectile(UStaticMeshComponent* NewCollisionMesh,
 	UProjectileMovementComponent* NewProjectileMovement, UParticleSystemComponent* NewLaunchBlast,
-	UParticleSystemComponent* NewImpactBlast, URadialForceComponent* NewExplosionForce, float NewDestroyDelay,
-	float NewProjectileDamage, float NewDamageRadius, float NewSpeed, float newExplosionIntensity)
+	UParticleSystemComponent* NewImpactBlast, URadialForceComponent* NewExplosionForce, USoundBase* NewImpactSound,
+	float NewDestroyDelay, float NewProjectileDamage, float NewDamageRadius, float NewSpeed, float newExplosionIntensity)
 {
 	CollisionMesh = NewCollisionMesh;
 	ProjectileMovement = NewProjectileMovement;
@@ -61,10 +61,12 @@ void AProjectile::SetProjectile(UStaticMeshComponent* NewCollisionMesh,
 	DamageRadius = NewDamageRadius;
 	Speed = NewSpeed;
 	ExplosionIntensity = newExplosionIntensity;
+	ImpactSound = NewImpactSound;
+	ImpactBlast->ActivateSystem(false);
 
 	if (bIsHeavyRocket)
 	{
-		LaunchBlast->Deactivate();
+		LaunchBlast->ActivateSystem(false);
 		ProjectileMovement->SetVelocityInLocalSpace(FVector::ZeroVector);
 	}
 	else
@@ -80,9 +82,20 @@ void AProjectile::CauseDamage(AActor* OtherActor, const FHitResult& Hit)
 	{
 		return;
 	}
+
+	if (LaunchBlast)
+	{
+		LaunchBlast->ActivateSystem(false);
+	}
+	if (ImpactBlast)
+	{
+		ImpactBlast->ActivateSystem(true);
+	}
+	if (ImpactSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation(), GetActorRotation(), SoundVolumeMultiplier);
+	}
 	
-	LaunchBlast->Deactivate();
-	ImpactBlast->Activate();
 
 
 	if (DamageRadius > 0)

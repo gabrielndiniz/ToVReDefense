@@ -76,7 +76,7 @@ public:
 	
 	UFUNCTION(BlueprintPure, Category = "Firing")
 	bool PredictClearShot(const FVector& TargetLocation, const FVector& TargetVelocity, float ProjectileSpeed,
-	                      float MaxPredictionTime) const;
+	                      float MaxPredictionTime, TArray<AActor*> AcceptableTargets) const;
 
 
 private:
