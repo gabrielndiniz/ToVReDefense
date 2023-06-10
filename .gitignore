@@ -74,3 +74,6 @@ C_ToVReDefense/Intermediate/Build/*
 
 # Cache files for the editor to use
 C_ToVReDefense/DerivedDataCache/*
+C_ToVReDefense/Content/WinterForest/Textures/T_Detail_normal.uasset
+C_ToVReDefense/Content/WinterForest/Textures/T_Forest_ground_normal.uasset
+C_ToVReDefense/Content/WinterForest/Textures/T_Ground_normal.uasset
