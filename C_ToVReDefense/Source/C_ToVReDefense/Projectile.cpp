@@ -135,20 +135,6 @@ void AProjectile::CauseDamage(AActor* OtherActor, const FHitResult& Hit)
 
 
 		}
-		else
-		{
-			
-			UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent. Name of the actor: %s"), *OtherActor->GetName());
-			if (OtherActor->GetParentActor())
-			{
-				UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent. Name of the parent actor: %s"), *OtherActor->GetParentActor()->GetName());
-			}
-			else
-			{
-				UE_LOG(LogTemp, Warning, TEXT("The ammo does not have a HealthComponent and does not have parent."));
-			}
-				
-		}
 	}
 	ExplosionForce->Radius = ExplosionIntensity;
 	ExplosionForce->FireImpulse();
