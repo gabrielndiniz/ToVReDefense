@@ -26,12 +26,15 @@ void AGrabbable::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (FindComponentByClass<UFireWeaponComponent>() == nullptr)
+	if (FindComponentByClass<UFireWeaponComponent>() != nullptr)
 	{
-		return;
+		FireComponent = FindComponentByClass<UFireWeaponComponent>();
 	}
-	FireComponent = FindComponentByClass<UFireWeaponComponent>();
 
+	if (FindComponentByClass<UWidgetInteractorComponent>() != nullptr)
+	{
+		Interactor = FindComponentByClass<UWidgetInteractorComponent>();
+	}
 	
 }
 
@@ -48,6 +51,10 @@ void AGrabbable::SetTriggerAxisValue(float Axis)
 	if (FireComponent)
 	{
 		FireComponent->SetTriggerAxisValue(Axis);
+	}
+	if (Interactor)
+	{
+		Interactor->SetTriggerAxisValue(Axis);
 	}
 }
 

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "WidgetInteractorComponent.h"
 #include "GameFramework/Actor.h"
 #include "Grabbable.generated.h"
 
@@ -52,6 +53,9 @@ private:
 	
 	UPROPERTY()
 	UFireWeaponComponent* FireComponent;
+
+	UPROPERTY()
+	UWidgetInteractorComponent* Interactor;
 	
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* GrabbableRootComponent;
