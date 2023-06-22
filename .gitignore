@@ -1,6 +1,16 @@
 #The Project that serve as test of some functionality
 TovreDefense/*
 
+#The Project that is build test
+UE51/C_TovreDefense/.idea/*
+UE51/C_TovreDefense/.vs/*
+UE51/C_TovreDefense/Binaries/*
+UE51/C_TovreDefense/Content/*
+UE51/C_TovreDefense/DerivedDataCache/*
+UE51/C_TovreDefense/Intermediate/*
+UE51/C_TovreDefense/Plugins/*
+UE51/C_TovreDefense/Saved/*
+
 # Visual Studio 2015 user specific files
 C_ToVReDefense/.vs/
 
